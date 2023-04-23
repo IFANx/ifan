@@ -20,6 +20,7 @@ module.exports = {
                 collapsable: false, // 不折叠
                 children: [
                     { title: "博客 01", path: "/construction/Blog1" },
+                    {title: "博客 02", path: "/construction/Blog2" },
                 ],
             }
         ]
