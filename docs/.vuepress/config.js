@@ -1,7 +1,7 @@
 module.exports = {
     title: 'Ifan的个人技术博客',
     description: '办法总比问题多',
-    base: '/',
+    base: '/ifan',
     themeConfig: {
         nav: [
             { text: '首页', link: '/' },
