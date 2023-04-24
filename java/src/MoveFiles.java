@@ -37,16 +37,21 @@ public class MoveFiles {
         new File("resource/.vuepress/dist").renameTo(new File("resource/.vuepress/docs"));
     }
 
-    public static void delete() {
-        File docs = new File("resource/.vuepress/docs");
-        if (docs.exists()) {
-            docs.delete();
+    private static void deleteDirectoryLegacyIO(File file) {
+
+        File[] list = file.listFiles();  //无法做到list多层文件夹数据
+        if (list != null) {
+            for (File temp : list) {     //先去递归删除子文件夹及子文件
+                deleteDirectoryLegacyIO(temp);   //注意这里是递归调用
+            }
         }
+        file.delete();
     }
 
     public static void main(String[] args) throws IOException {
         rename();
         copy1("resource/.vuepress/docs", "docs");
-        delete();
+        deleteDirectoryLegacyIO(new File("resource/.vuepress/docs"));
+        deleteDirectoryLegacyIO(new File("resource/.vuepress/dist"));
     }
 }
