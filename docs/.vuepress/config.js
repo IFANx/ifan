@@ -1,28 +1,39 @@
 module.exports = {
-    title: 'Ifan的个人技术博客',
+    title: 'Notes',
     description: '办法总比问题多',
-    base: '/ifan',
+    base: '/ifan/',
     themeConfig: {
         nav: [
-            { text: '首页', link: '/' },
+            {text: '首页', link: '/'},
             {
-                text: 'Ifan的博客',
+                text: 'what?',
                 items: [
-                    { text: 'Github', link: 'https://github.com/IFANx' },
-                    { text: 'Gitee', link: 'https://gitee.com/IFANx' }
+                    {text: 'Github', link: 'https://github.com/IFANx'},
+                    {text: 'Gitee', link: 'https://gitee.com/IFANx'}
                 ]
             }
         ],
-        sidebar:[
+        sidebar: [
             {
-                title: "博客搭建",
-                path: "/construction/Blog1",
-                collapsable: false, // 不折叠
+                title: '语言基础',
+                sidebarDepth: 3,
+                collapsable: true,
                 children: [
-                    { title: "博客 01", path: "/construction/Blog1" },
-                    {title: "博客 02", path: "/construction/Blog2" },
-                ],
-            }
+                    {   title: "java反射机制01", path: "/construction/Blog1" },
+                            {title: "Java反射机制02", path: "/construction/Blog2" },
+                ]
+            },
+            // {
+            //     title: '开发框架',
+            //     sidebarDepth: 2, // 这里对侧边栏目录显示的标题级别深度起作用
+            //     collapsable: true,
+            //     children: [
+            //         {title: 'vue', path: 'framework/vue'},
+            //         {title: 'vue-cli', path: 'framework/vue-cli'},
+            //         {title: 'vue-router', path: 'framework/vue-router'},
+            //         {title: 'vue-vuex', path: 'framework/vue-vuex'},
+            //     ]
+            // },
         ]
     }
 }

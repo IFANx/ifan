@@ -14,18 +14,31 @@ public class ReadFiles {
         ArrayList<String> files = new ArrayList<String>();
         File file = new File(path);
         File[] tempList = file.listFiles();
-
-        for (int i = 0; i < tempList.length; i++) {
-            if (tempList[i].isFile()) {
-//              System.out.println("文     件：" + tempList[i]);
-                files.add(tempList[i].toString());
-            }
-            if (tempList[i].isDirectory()) {
-//              System.out.println("文件夹：" + tempList[i]);
-            }
-        }
         return files;
     }
+
+    public void recreateConfigFile() {
+        StringBuilder sb = new StringBuilder();    //待写入字符串
+        byte[] sourceByte = sourceString.getBytes();
+        if (null != sourceByte) {
+            try {
+                File file = new File(path);        //文件路径（路径+文件名）
+                if (!file.exists()) {    //文件不存在则创建文件，先创建目录
+                    File dir = new File(file.getParent());
+                    dir.mkdirs();
+                    file.createNewFile();
+                }
+                FileOutputStream outStream = new FileOutputStream(file);    //文件输出流用于将数据写入文件
+                outStream.write(sourceByte);
+                outStream.close();    //关闭文件输出流
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    //run
+    //java  java/src/ReadFiles.java
 }
 
 

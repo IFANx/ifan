@@ -4,6 +4,7 @@
 set -e
 
 # 生成静态文件
+java  java/src/ReadFiles.java
 
 npm run docs:build
 
