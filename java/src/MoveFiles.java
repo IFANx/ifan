@@ -50,6 +50,7 @@ public class MoveFiles {
 
     public static void main(String[] args) throws IOException {
         rename();
+        deleteDirectoryLegacyIO(new File("docs"));
         copy1("resource/.vuepress/docs", "docs");
         deleteDirectoryLegacyIO(new File("resource/.vuepress/docs"));
         deleteDirectoryLegacyIO(new File("resource/.vuepress/dist"));
