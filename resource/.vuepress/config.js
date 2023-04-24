@@ -15,28 +15,34 @@ module.exports = {
         ],
         sidebar: [
                {
-                title: 'construction3',
+                title: 'JVM',
                 sidebarDepth: 3,
                 collapsable: true,
                 children: [
-                       {   title: "Blog2", path: "/construction/construction3/Blog2" },
-                       {   title: "Blog1", path: "/construction/construction3/Blog1" },
+                       {   title: "java的反射机制", path: "/Notes/JVM/java的反射机制" },
                 ]
             },               {
-                title: 'construction',
+                title: '操作系统',
                 sidebarDepth: 3,
                 collapsable: true,
                 children: [
-                       {   title: "Blog2", path: "/construction/Blog2" },
-                       {   title: "Blog1", path: "/construction/Blog1" },
+                       {   title: "Blog2", path: "/Notes/操作系统/Blog2" },
                 ]
             },               {
-                title: 'construction2',
+                title: '计算机网络',
                 sidebarDepth: 3,
                 collapsable: true,
                 children: [
-                       {   title: "Blog2", path: "/construction/construction2/Blog2" },
-                       {   title: "Blog1", path: "/construction/construction2/Blog1" },
+                       {   title: "TCP", path: "/Notes/计算机网络/TCP" },
+                       {   title: "UDP", path: "/Notes/计算机网络/UDP" },
+                ]
+            },               {
+                title: 'Notes',
+                sidebarDepth: 3,
+                collapsable: true,
+                children: [
+                       {   title: "Abstract", path: "/Notes/Abstract" },
+                       {   title: "Interface", path: "/Notes/Interface" },
                 ]
             },        ]
     }

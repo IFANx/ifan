@@ -28,7 +28,8 @@ public class ReadFiles {
                             }
                             sb.append(split[j]);
                         }
-                        files.put(readfile.getName().replaceFirst("[.][^.]+$", ""), sb + "/" + filelist[i].replaceFirst("[.][^.]+$", ""));
+                        files.put(readfile.getName().replaceFirst("[.][^.]+$", ""),
+                                sb + "/" + filelist[i].replaceFirst("[.][^.]+$", ""));
                     } else if (readfile.isDirectory()) {
                         readFile(filepath + "/" + filelist[i]);
                     }
@@ -42,7 +43,7 @@ public class ReadFiles {
     }
 
     public static void createFile() throws IOException {
-        String filePath = "resource/construction";
+        String filePath = "resource/Notes";
         File dir = new File(filePath);
         // 一、检查放置文件的文件夹路径是否存在，不存在则创建
         if (!dir.exists()) {
@@ -90,7 +91,6 @@ public class ReadFiles {
         }
     }
 
-
     public static String readFileAndCreateJs(String filePath) throws IOException {
         StringBuilder stringBuilder = new StringBuilder();
         final var stringHashMapHashMap = readFile(filePath);
@@ -108,7 +108,8 @@ public class ReadFiles {
                     "                children: [\n", entry.getKey()));
             for (Map.Entry<String, String> entrySon : entry.getValue().entrySet()) {
                 System.out.println(entrySon.getKey() + ":" + entrySon.getValue());
-                sb.append(String.format("                       {   title: \"%s\", path: \"/%s\" },\n", entrySon.getKey(), entrySon.getValue()));
+                sb.append(String.format("                       {   title: \"%s\", path: \"/%s\" },\n",
+                        entrySon.getKey(), entrySon.getValue()));
             }
             sb.append("                ]\n" +
                     "            },");

@@ -14,8 +14,8 @@ java java/src/MoveFiles.java
 
 #cd resource/.vuepress/dist
 
-git init
-git add -A
+# git init
+git add .
 git commit -m 'deploy'
 
 # 如果发布到 https://<USERNAME>.github.io/<REPO>
