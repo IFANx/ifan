@@ -33,16 +33,16 @@ module.exports = {
                 sidebarDepth: 3,
                 collapsable: true,
                 children: [
-                       {   title: "Blog2", path: "/Notes/计算机网络/Blog2" },
-                       {   title: "Blog1", path: "/Notes/计算机网络/Blog1" },
+                       {   title: "TCP", path: "/Notes/计算机网络/TCP" },
+                       {   title: "UDP", path: "/Notes/计算机网络/UDP" },
                 ]
             },               {
                 title: 'Notes',
                 sidebarDepth: 3,
                 collapsable: true,
                 children: [
-                       {   title: "Blog2", path: "/Notes/Blog2" },
-                       {   title: "Blog1", path: "/Notes/Blog1" },
+                       {   title: "Abstract", path: "/Notes/Abstract" },
+                       {   title: "Interface", path: "/Notes/Interface" },
                 ]
             },        ]
     }
