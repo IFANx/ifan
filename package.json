@@ -3,7 +3,7 @@
     "vuepress": "^1.9.9"
   },
   "scripts": {
-    "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs"
+    "resource:dev": "vuepress dev resource",
+    "resource:build": "vuepress build resource"
   }
 }
