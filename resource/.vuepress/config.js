@@ -36,6 +36,7 @@ module.exports = {
                        {   title: "TCP", path: "/Notes/计算机网络/TCP" },
                        {   title: "UDP", path: "/Notes/计算机网络/UDP" },
                        {   title: "应用层协议", path: "/Notes/计算机网络/应用层协议" },
+                       {   title: "运输层协议", path: "/Notes/计算机网络/运输层协议" },
                 ]
             },               {
                 title: 'Notes',
