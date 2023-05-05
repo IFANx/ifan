@@ -21,28 +21,21 @@ module.exports = {
                 children: [
                        {   title: "java的反射机制", path: "/Notes/JVM/java的反射机制" },
                 ]
-            },               {
-                title: 'OS',
+            },                              {
+                title: '操作系统',
                 sidebarDepth: 3,
                 collapsable: true,
                 children: [
-                       {   title: "Blog2", path: "/Notes/OS/Blog2" },
+                       {   title: "Blog2", path: "/Notes/操作系统/Blog2" },
                 ]
             },               {
-                title: 'CodeMoreCherishMore',
+                title: '计算机网络',
                 sidebarDepth: 3,
                 collapsable: true,
                 children: [
-                       {   title: "cherish", path: "/Notes/CodeMoreCherishMore/cherish" },
-                ]
-            },               {
-                title: 'CN',
-                sidebarDepth: 3,
-                collapsable: true,
-                children: [
-                       {   title: "TCP", path: "/Notes/CN/TCP" },
-                       {   title: "UDP", path: "/Notes/CN/UDP" },
-                       {   title: "应用层协议", path: "/Notes/CN/应用层协议" },
+                       {   title: "TCP", path: "/Notes/计算机网络/TCP" },
+                       {   title: "UDP", path: "/Notes/计算机网络/UDP" },
+                       {   title: "应用层协议", path: "/Notes/计算机网络/应用层协议" },
                 ]
             },               {
                 title: 'Notes',
