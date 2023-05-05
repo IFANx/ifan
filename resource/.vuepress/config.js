@@ -26,7 +26,9 @@ module.exports = {
                 sidebarDepth: 3,
                 collapsable: true,
                 children: [
-                       {   title: "Blog2", path: "/Notes/操作系统/Blog2" },
+                       {   title: "一、进程与线程", path: "/Notes/操作系统/一、进程与线程" },
+                       {   title: "引论", path: "/Notes/操作系统/引论" },
+                       {   title: "二、存储管理", path: "/Notes/操作系统/二、存储管理" },
                 ]
             },               {
                 title: '计算机网络',
@@ -35,12 +37,15 @@ module.exports = {
                 children: [
                        {   title: "TCP", path: "/Notes/计算机网络/TCP" },
                        {   title: "UDP", path: "/Notes/计算机网络/UDP" },
+                       {   title: "应用层协议", path: "/Notes/计算机网络/应用层协议" },
+                       {   title: "传输层协议", path: "/Notes/计算机网络/传输层协议" },
                 ]
             },               {
                 title: 'Notes',
                 sidebarDepth: 3,
                 collapsable: true,
                 children: [
+                       {   title: "图床", path: "/Notes/图床" },
                        {   title: "Abstract", path: "/Notes/Abstract" },
                        {   title: "Interface", path: "/Notes/Interface" },
                 ]

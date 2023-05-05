@@ -108,8 +108,9 @@ public class ReadFiles {
                     "                children: [\n", entry.getKey()));
             for (Map.Entry<String, String> entrySon : entry.getValue().entrySet()) {
                 System.out.println(entrySon.getKey() + ":" + entrySon.getValue());
-                sb.append(String.format("                       {   title: \"%s\", path: \"/%s\" },\n",
-                        entrySon.getKey(), entrySon.getValue()));
+                if (entrySon.getKey().length() != 0)
+                    sb.append(String.format("                       {   title: \"%s\", path: \"/%s\" },\n",
+                            entrySon.getKey(), entrySon.getValue()));
             }
             sb.append("                ]\n" +
                     "            },");
