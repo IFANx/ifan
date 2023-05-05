@@ -21,7 +21,7 @@ module.exports = {
                 children: [
                        {   title: "java的反射机制", path: "/Notes/JVM/java的反射机制" },
                 ]
-            },                              {
+            },               {
                 title: '操作系统',
                 sidebarDepth: 3,
                 collapsable: true,
