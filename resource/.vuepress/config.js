@@ -42,6 +42,7 @@ module.exports = {
                 sidebarDepth: 3,
                 collapsable: true,
                 children: [
+                       {   title: "图床", path: "/Notes/图床" },
                        {   title: "Abstract", path: "/Notes/Abstract" },
                        {   title: "Interface", path: "/Notes/Interface" },
                 ]
