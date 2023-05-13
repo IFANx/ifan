@@ -1,0 +1,13 @@
+/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/Applications/CLion.app/Contents/bin/ninja/mac/ninja -DCMAKE_C_COMPILER=/usr/bin/clang -DCMAKE_CXX_COMPILER=/usr/bin/clang++ -G Ninja -S /Users/kkxu/CLionProjects/Squirrel/Squirrel -B /Users/kkxu/CLionProjects/Squirrel/Squirrel/cmake-build-debug
+-- Checking for module 'mysqlclient>=5.7'
+--   No package 'mysqlclient' found
+CMake Error at /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/FindPkgConfig.cmake:607 (message):
+  A required package was not found
+Call Stack (most recent call first):
+  /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/FindPkgConfig.cmake:829 (_pkg_check_modules_internal)
+  CMakeLists.txt:36 (pkg_check_modules)
+
+
+-- Configuring incomplete, errors occurred!
+See also "/Users/kkxu/CLionProjects/Squirrel/Squirrel/cmake-build-debug/CMakeFiles/CMakeOutput.log".
+See also "/Users/kkxu/CLionProjects/Squirrel/Squirrel/cmake-build-debug/CMakeFiles/CMakeError.log".
