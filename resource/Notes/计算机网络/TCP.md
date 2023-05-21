@@ -22,7 +22,7 @@ ARQ协议中还需要另外三种协议功能来处理存在比特差错的情�
 
 图3・19显示了发送方看到的GBN协议的序号范围。如果我们将基序号(base)定义为最早未确认分组的序号，将下一个序号(nextseqnum)定义为最小的未使用序号(即下 一个待发分组的序号)，则可将序号范围分割成4 段。在 [0, base - 1 ]段内的序号对应 于已经发送并被确认的分组。 [base, nextseqnum - 1 ]段内对应已经发送但未被确认的分 组。[nextseqnum, base +/V - 1 ]段内的序号能用于那些要被立即发送的分组，如果有数 据来自上层的话。 【后，大于或等于base + N的序号是不能使用的，直到当前流水线中未被确认的分组(特别是序号为base的分组)已得到确认为止。
 
-![image-20230513154957579](http://8.130.25.175:8080/img/:Users:kkxu:Library:Application Support:typora-user-images:image-20230513154957579.png)
+![image-20230513154957579](http://8.130.25.175:8080/img/image-20230513154957579.png)
 
 随着协议的运行，该窗口的序号空间向前滑动，N常被称为窗口长度，GBN协议也常被称为**滑动窗口协议**。
 
@@ -36,13 +36,13 @@ GBN协议潜在地允许发送方用多个分组“填充流水线”，因此�
 
 这种个别的、按需的重传要求接收方逐个地 确认正确接收的分组。再次用窗口长度7V来限制流水线中未完成、未被确认的分组数。然而，与GBN不同的是，发送方已经收到了对窗口中某些分组的ACK。图3・23显示了 SR 发送方看到的序号空间。图3-24详细描述了 SR发送方所采取的动作。
 
-![image-20230513160145440](http://8.130.25.175:8080/img/:Users:kkxu:Library:Application Support:typora-user-images:image-20230513160145440.png)
+![image-20230513160145440](http://8.130.25.175:8080/img/image-20230513160145440.png)
 
 SR接收方将确认一个正确接收的分组而不管其是否按序。失序的分组将被缓存直到所有丢失分组(即序号更小的分组)皆被收到为止，这时才可以将一批分组按序交付给上 层。
 
 **选择重传协议中，窗口长度必须小于等于序号空间大小的一半*，原因在于区分是新传输的分组还是崇川的分组**
 
-![image-20230513161238706](http://8.130.25.175:8080/img/:Users:kkxu:Library:Application Support:typora-user-images:image-20230513161238706.png)
+![image-20230513161238706](http://8.130.25.175:8080/img/image-20230513161238706.png)
 
 
 
@@ -52,7 +52,7 @@ SR接收方将确认一个正确接收的分组而不管其是否按序。失序
 
 TCP头部20字节，UDP头部8字节
 
-![image-20230513163133652](http://8.130.25.175:8080/img/:Users:kkxu:Library:Application Support:typora-user-images:image-20230513163133652.png)
+![image-20230513163133652](http://8.130.25.175:8080/img/image-20230513163133652.png)
 
 
 
@@ -74,11 +74,11 @@ EstimatedRTT的新值是由以前的Esti- matedRTT值与SampleRTT新值加权组
 
 **TCP连接建立的三次握手**
 
-![image-20230513165604804](http://8.130.25.175:8080/img/:Users:kkxu:Library:Application Support:typora-user-images:image-20230513165604804.png)
+![image-20230513165604804](http://8.130.25.175:8080/img/image-20230513165604804.png)
 
 **TCP连接断开**
 
-![image-20230513165713387](http://8.130.25.175:8080/img/:Users:kkxu:Library:Application Support:typora-user-images:image-20230513165713387.png)
+![image-20230513165713387](http://8.130.25.175:8080/img/image-20230513165713387.png)
 
 **SYN洪泛攻击**
 
@@ -114,4 +114,4 @@ EstimatedRTT的新值是由以前的Esti- matedRTT值与SampleRTT新值加权组
 
 该算法包括3个主要部分:1慢启动;2拥塞避免; 3快速恢复。慢启动和拥塞避免是TCP的强制部分，两者的差异在于对收到的ACK做出反应时增加cwnd长度的方式。
 
-![image-20230513171837631](http://8.130.25.175:8080/img/:Users:kkxu:Library:Application Support:typora-user-images:image-20230513171837631.png)
+![image-20230513171837631](http://8.130.25.175:8080/img/image-20230513171837631.png)
