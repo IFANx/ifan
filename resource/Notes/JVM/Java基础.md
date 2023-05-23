@@ -74,7 +74,7 @@ super 指代的是父类，是用来访问父类的;而this 指代的是当前�
 
 **9、float n = 1.8 有错吗？**
 
-![image-20230522184946328](/Users/kkxu/NodeProjects/ifan/ifan/images/image-20230522184946328.png)
+![image-20230522184946328](http://8.130.25.175:8080/img/image-20230522184946328.png)
 
 **10、i++ 和 ++i 的区别？**
 
@@ -199,9 +199,9 @@ static表示静态，**常用来修饰成员变量、成员方法、代码块和
 
  (1)修饰类：表示该类不能被继承； (2)修饰方法：表示方法不能被重写(用final修饰的父类的方法，在子类中直接找不到override)； (3)修饰变量：表示变量只能一次赋值以后值不能被修改（常量）。
 
-![image-20230522192255180](/Users/kkxu/NodeProjects/ifan/ifan/images/image-20230522192255180.png)
+![image-20230522192255180](http://8.130.25.175:8080/img/image-20230522192255180.png)
 
-![image-20230522192543936](/Users/kkxu/NodeProjects/ifan/ifan/images/image-20230522192543936.png)
+![image-20230522192543936](http://8.130.25.175:8080/img/image-20230522192543936.png)
 
 **25、final、finally、finalize 有什么区别？**
 
@@ -273,11 +273,11 @@ java中，main方法**可以被重载**，可以被调用，可以被继承，�
 
 重载：
 
-![image-20230522195053921](/Users/kkxu/NodeProjects/ifan/ifan/images/image-20230522195053921.png)
+![image-20230522195053921](http://8.130.25.175:8080/img/image-20230522195053921.png)
 
 继承以及重写：
 
-![image-20230522195208225](/Users/kkxu/NodeProjects/ifan/ifan/images/image-20230522195208225.png)
+![image-20230522195208225](http://8.130.25.175:8080/img/image-20230522195208225.png)
 
 
 
@@ -287,7 +287,7 @@ java中，main方法**可以被重载**，可以被调用，可以被继承，�
 
 静态私有方法也只能在本class中使用，其他class不具有访问权限
 
-![image-20230522195407017](/Users/kkxu/NodeProjects/ifan/ifan/images/image-20230522195407017.png)
+![image-20230522195407017](http://8.130.25.175:8080/img/image-20230522195407017.png)
 
 **33、Java 中的断言（assert）是什么？**
 
@@ -348,7 +348,7 @@ SecurityException （安全异常）
 
 空指针异常属于运行时的异常。 **当Java尝试去调用真实对象上的任何方法时，如果在运行时中，该对象调用的是空引用(Null Reference)，那么就会抛出异常**
 
-![image-20230522200231616](/Users/kkxu/NodeProjects/ifan/ifan/images/image-20230522200231616.png)
+![image-20230522200231616](http://8.130.25.175:8080/img/image-20230522200231616.png)
 
 **40、你知道有哪些避免空指针的方法？**
 
@@ -454,7 +454,7 @@ long totalPrice = price * count;
 
 在switch（expr）中，expr只能是一个整数表达式或者是枚举常量，整数表达式可以是int基本类型也可以是Integer包装类型，由于byte，short，char都可以隐含的转为int，所以这些类型以及这些类型的包装类型都是可以的，而long，string都不符合switch的语法规则并且都不能隐含的转为int,所以是不能作用于switch语句。
 
-![image-20230522201735248](/Users/kkxu/NodeProjects/ifan/ifan/images/image-20230522201735248.png)
+![image-20230522201735248](http://8.130.25.175:8080/img/image-20230522201735248.png)
 
 **51、switch 是否能用在 String 上？**
 
@@ -512,7 +512,7 @@ final class，不能被继承
 
 **不能**，因为String类是被final修饰的类型，final类是不能被继承的，String类是不可变类型(Immutable)类。
 
-![image-20230522202912360](/Users/kkxu/NodeProjects/ifan/ifan/images/image-20230522202912360.png)
+![image-20230522202912360](http://8.130.25.175:8080/img/image-20230522202912360.png)
 
 **58、String 真的是不可变的吗？**
 
@@ -545,7 +545,7 @@ StringBuffer和StringBuilder类的区别也是如此，他们的原理和操作�
 
 StringJoiner是java.util包中的一个类，**用于构造一个由分隔符分隔的字符序列（可选），并且可以从提供的前缀开始并以提供的后缀结尾**。 虽然这也可以在StringBuilder类的帮助下在每个字符串之后附加分隔符，但StringJoiner提供了简单的方法来实现，而无需编写大量代码。StringJoiner用例。
 
-![image-20230522203920010](/Users/kkxu/NodeProjects/ifan/ifan/images/image-20230522203920010.png)
+![image-20230522203920010](http://8.130.25.175:8080/img/image-20230522203920010.png)
 
 
 
@@ -569,7 +569,7 @@ StringJoiner是java.util包中的一个类，**用于构造一个由分隔符分
 
 抽象类也可以定义静态方法和main方法。
 
-![image-20230522204422031](/Users/kkxu/NodeProjects/ifan/ifan/images/image-20230522204422031.png)
+![image-20230522204422031](http://8.130.25.175:8080/img/image-20230522204422031.png)
 
 **68、静态内部类和普通内部类有什么区别？**
 
@@ -581,11 +581,11 @@ static：
 
 定义在一个类内部的类叫内部类，包含内部类的类称为外部类。内部类可以声明public、protected、private等访问限制，可以声明 为abstract的供其他内部类或外部类继承与扩展，或者声明为static、final的，也可以实现特定的接口。**外部类按常规的类访问方式使用内部类，唯一的差别是外部类可以访问内部类的所有方法与属性，包括私有方法与属性。**
 
-![image-20230522204939229](/Users/kkxu/NodeProjects/ifan/ifan/images/image-20230522204939229.png)
+![image-20230522204939229](http://8.130.25.175:8080/img/image-20230522204939229.png)
 
 只有内部类才可生声明为static静态类（静态类（只有内部类才能被声明为静态类，即静态内部类））
 
-![image-20230522205228555](/Users/kkxu/NodeProjects/ifan/ifan/images/image-20230522205228555.png)
+![image-20230522205228555](http://8.130.25.175:8080/img/image-20230522205228555.png)
 
 1.只能在内部类中定义静态类
 
@@ -640,7 +640,7 @@ URL https://juejin.cn/post/6844903791863529480
 
   接口中的 变量默认为final类型
 
-![image-20230522210657140](/Users/kkxu/NodeProjects/ifan/ifan/images/image-20230522210657140.png)
+![image-20230522210657140](http://8.130.25.175:8080/img/image-20230522210657140.png)
 
 **何时用抽象类何时用接口**
 
@@ -705,7 +705,7 @@ URL https://juejin.cn/post/6844903791863529480
 
 可以，例子：继承接口且实现接口方法
 
-![image-20230522211458697](/Users/kkxu/NodeProjects/ifan/ifan/images/image-20230522211458697.png)
+![image-20230522211458697](http://8.130.25.175:8080/img/image-20230522211458697.png)
 
 **79、怎么查看一个 Java 类的字节码？**
 
@@ -713,7 +713,7 @@ URL https://juejin.cn/post/6844903791863529480
 
 通过以上步骤查看的java字节码
 
-![image-20230522211752728](/Users/kkxu/NodeProjects/ifan/ifan/images/image-20230522211752728.png)
+![image-20230522211752728](http://8.130.25.175:8080/img/image-20230522211752728.png)
 
 **80、Java 中的 UUID 是什么?**
 
@@ -775,7 +775,7 @@ Student s2=new Student("小明",18);
 
 类的继承自Object类的对象均可被重写。
 
-![image-20230522213835724](/Users/kkxu/NodeProjects/ifan/ifan/images/image-20230522213835724.png)
+![image-20230522213835724](http://8.130.25.175:8080/img/image-20230522213835724.png)
 
 **90、Java 常用的元注解有哪些？**
 
@@ -804,41 +804,383 @@ transient是Java语言的关键字，**用来表示一个成员变量不是该�
 
 **95、如何实现对象克隆？**
 
+有两种方式：
+实现Cloneable接口并重写Object类中的clone()方法；
+
+实现Serializable接口，通过对象的序列化和反序列化实现克隆，可以实现真正的深度克隆。
+注意：基于序列化和反序列化实现的克隆不仅仅是深度克隆，更重要的是通过泛型限定，可以检查出要克隆的对象是否支持序列化，这项检查是编译器完成的，不是在运行时抛出异常，这种是方案明显优于使用Object类的clone方法克隆对象。让问题在编译的时候暴露出来总是优于把问题留到运行时。
+
+java clone()方法
+Object对象有个clone()方法，clone方法返回与当前对象的一个副本对象。可以通过操作副本对象而不影响当前对象：实现了对象中各个属性的复制，但它的可见范围是protected的，所以实体类使用克隆的前提是：
+① 实现Cloneable接口，这是一个标记接口，自身没有方法。 
+② 覆盖clone()方法，可见性提升为public。
+
+Java 深度克隆
+利用序列化实现深度克隆
+把对象写到流里的过程是序列化(Serialization)过程；而把对象从流中读出来的过程则叫反序列化(Deserialization)过程。应当指出的是，写到流里的是对象的一个拷贝，而原对象仍然存在于JVM里面。
+在Java语言里深度克隆一个对象，常常可以先使对象实现Serializable接口，然后把对象（实际上只是对象的拷贝）写到一个流里（序列化），再从流里读回来（反序列化），便可以重建对象。
+
+
+
 **96、对象克隆浅拷贝和深拷贝的区别？**
+
+深拷贝和浅拷贝是只针对Object和Array这样的引用数据类型的。
+深拷贝和浅拷贝的示意图大致如下：
+![3483357010-5cb447fba09cc_fix732](http://8.130.25.175:8080/img/3483357010-5cb447fba09cc_fix732.jpeg)
+
+
+
+
+
+
+
+浅拷贝只复制指向某个对象的指针，而不复制对象本身，新旧对象还是共享同一块内存。但深拷贝会另外创造一个一模一样的对象，新对象跟原对象不共享内存，修改新对象不会改到原对象。
+
+简而言之，**浅拷贝仅仅复制所考虑的对象，而不复制它所引用的对象深拷贝是一个整个独立的对象拷贝，深拷贝会拷贝所有的属性,并拷贝属性指向的动态分配的内存**。 当对象和它所引用的对象一起拷贝时即发生深拷贝。 深拷贝相比于浅拷贝速度较慢并且花销较大。
+
+
 
 **97、Java 反射机制有什么用？**
 
+Java反射机制主要提供了以下功能： **在运行时判断任意一个对象所属的类；在运行时构造任意一个类的对象；在运行时判断任意一个类所具有的成员变量和方法；在运行时调用任意一个对象的方法；生成动态代理**。
+
+
+
 **98、Java 反射机制的优缺点？**
+
+1.增加程序的灵活性，避免将程序写死到代码里。
+
+2.代码简洁，提高代码的复用率，外部调用方便
+
+```java
+package cn.yonyong.reflection.testdemo;
+ 
+interface Fruit { //水果接口
+　 public void eat() ; //吃水果
+}
+ 
+class Apple implements Fruit{ //定义苹果
+　　public void eat() {
+　　　　System.out.println("**吃苹果。"); 
+　　} 
+}
+ 
+class Orange implements Fruit{
+　　public void eat() {
+　　　　System.out.println("**吃橘子。"); 
+　　}
+}
+ 
+class Factory{
+　　public static Fruit getInstance(String className){
+　　　　Fruit fruit = null ;
+　　　　try{
+      //反射
+　　　　　　fruit = (Fruit) Class.forName(className).newInstance() ;
+　　　　}catch(Exception e ){
+　　　　　　e.printStackTrace() ;
+　　　　}
+　　　　return fruit ;
+　 }
+}
+ 
+public class FactoryDemo{
+　　public static void main(String args[]){
+　　//通过工厂类取得接口实例，传入完整的包.类名称
+　　　　Fruit f = Factory.getInstance("cn.yonyong.reflection.testdemo.Apple") ;
+　　　　if(f!=null){ //判断是否取得接口实例
+　　　　　　f.eat() ;
+　　　　}
+　 }
+}
+```
+
+如果不用反射，那么我们如果再加一个西瓜类，就得在Factory里判断，每添加一个类都要修改一次Factory，但用了反射只用在调用的时候传入完整的类名就可完成。结果：用反射，修改一处代码；不用反射，修改两处代码。
+
+3.对于任意一个类，都能够知道这个类的所有属性和方法；对于任意一个对象，都能够调用它的任意一个方法
+
+**反射的缺点**
+性能问题
+
+1.使用反射基本上是一种解释操作，用于字段和方法接入时要远慢于直接代码。因此Java反射机制主要应用在对灵活性和扩展性要求很高的系统框架上,普通程序不建议使用。
+
+2.反射包括了一些动态类型，所以JVM无法对这些代码进行优化。因此，反射操作的效率要比那些非反射操作低得多。我们应该避免在经常被 执行的代码或对性能要求很高的程序中使用反射。
+
+使用反射会模糊程序内部逻辑
+
+程序人员希望在源代码中看到程序的逻辑，反射等绕过了源代码的技术，因而会带来维护问题。反射代码比相应的直接代码更复杂。
+
+安全限制
+
+使用反射技术要求程序必须在一个没有安全限制的环境中运行。如果一个程序必须在有安全限制的环境中运行，如Applet，那么这就是个问题了
+
+内部暴露
+
+由于反射允许代码执行一些在正常情况下不被允许的操作（比如访问私有的属性和方法），所以使用反射可能会导致意料之外的副作用－－代码有功能上的错误，降低可移植性。反射代码破坏了抽象性，因此当平台发生改变的时候，代码的行为就有可能也随着变化。
+
 
 **99、Java 反射机制 Class 类有哪些常用方法？**
 
+三、常用方法： **1、获取构造方法、成员方法、成员变量(公开的public)** **2、获取构造方法、成员方法、成员变量(所有的public+private)** **3、获取名称**
+
+
+
 **100、Java 反射可以访问私有方法吗？**
+
+```java
+public class TestReflect {//测试类
+ 
+	public void mPublic() {//访问权限最大
+		System.out.println("public run");
+	}
+	
+	protected void mProtected() {//同包下才能访问（实验对象）
+		System.out.println("protected run");
+	}
+	
+	private void mPrivate() {//只有本类中才能访问（实验对象）
+		System.out.println("private run");
+	}
+	
+}
+```
+
+```java
+	public static void main(String[] args) throws Exception {
+		Class<?> class1 = null;
+		// 反射获取类实例，用的最多的就是jdbc获取驱动的时候就是用Class.forName("xxx");
+		// 一般采用这种形式
+		class1 = Class.forName("com.xxx.TestReflect");
+		// class1 = new TestReflect().getClass();
+		// class1 = TestReflect.class;
+		
+		// 类实例化，到这里就可以访问TestReflect类的public属性的成员方法和成员变量了
+		TestReflect tr = (TestReflect) class1.newInstance();
+		
+		// 通过java.lang.Class类得到一个Method对象
+		// api中java.lang.Class.getDeclaredMethod方法介绍
+		// 返回一个 Method 对象，该对象反映此 Class 对象所表示的类或接口的指定已声明方法。
+	    Method method = class1.getDeclaredMethod("mPrivate");
+	    Method method1 = class1.getDeclaredMethod("mProtected");
+	    
+	    //将此对象的 accessible 标志设置为指示的布尔值。
+		//值为 true 则指示反射的对象在使用时应该取消 Java 语言访问检查。
+		//值为 false 则指示反射的对象应该实施 Java 语言访问检查。
+	    method.setAccessible(true); 
+	    method1.setAccessible(true);
+	    
+	    // 调用该方法
+	    method.invoke(tr);
+	    method1.invoke(tr);
+	}
+```
+
+![image-20230523103317991](http://8.130.25.175:8080/img/image-20230523103317991.png)
+
+从运行结果来看，反射可以方法私有方法,但是 如果私有方法没有设置 method.setAccessible(true);，私有方法无法访问。 
 
 **101、Java 反射可以访问私有变量吗？**
 
+```java
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+ 
+/**
+ * 用Java反射机制来调用private方法
+ * @author WalkingDog
+ *
+ */
+ 
+public class Reflect {
+	
+	public static void main(String[] args) throws Exception {
+		
+		//直接创建对象
+		Person person = new Person();
+		
+		Class<?> personType = person.getClass();
+		
+		//访问私有方法
+		//getDeclaredMethod可以获取到所有方法，而getMethod只能获取public
+		Method method = personType.getDeclaredMethod("say", String.class);
+		
+		//压制Java对访问修饰符的检查
+		method.setAccessible(true);
+		
+		//调用方法;person为所在对象
+		method.invoke(person, "Hello World !");
+		
+		//访问私有属性
+		Field field = personType.getDeclaredField("name");
+		
+		field.setAccessible(true);
+		
+		//为属性设置值;person为所在对象
+		field.set(person, "WalkingDog");
+		
+		System.out.println("The Value Of The Field is : " + person.getName());
+		
+	}
+}
+ 
+//JavaBean
+class Person{
+	private String name;
+	
+	//每个JavaBean都应该实现无参构造方法
+	public Person() {}
+	
+	public String getName() {
+		return name;
+	}
+ 
+	private void say(String message){
+		System.out.println("You want to say : " + message);
+	}
+}
+```
+
+设置field.setAccessible(true);和method.setAccessible(true);私有方法和私有属性均可访问。
+
 **102、Class.forName 和 ClassLoader 的区别？**
+
+**class**.**forname**是**Java**语言中的一个方法，可以根据类的全限定名加载类，并返回类的**Class**对象。 **ClassLoader**是**Java**. 它是用来实现**Java**的懒加载机制的，在程序运行过程中，当需要某个类时，才由**ClassLoader**将该类加载到内存中。
+
+反射定义
+
+在运行状态中，对任意一个类，都能知道这个类中所有的属性和方法；对于任意一个对象，都能调用它的任意一个方法和属性。
+
+反射的使用过程中要基于Class对象，那通过Class.forName()或者[ClassLoader](https://so.csdn.net/so/search?q=ClassLoader&spm=1001.2101.3001.7020).loadClass()获取Class有什么区别呢？
+
+Class.forName()加载的类会被初始化，类中的静态成员变量会被初始化，静态代码块会被执行
+通过ClassLoader.loadClass加载的类不进行解析操作，不进行解析操作就意味着初始化也不会进行，那么其类的静态参数就不会初始化，静态代码块也不会被执行。
 
 **103、什么是宏变量和宏替换？**
 
+宏变量：
+
+Java中，一个用final定义的变量，不管它是类型的变量，只要用final定义了并同时指定了初始值，并且这个初始值是在编译时就被确定下来的，那么这个final变量就是一个宏变量。编译器会把程序所有用到该变量的地方直接替换成该变量的值，也就是说编译器能对宏变量进行宏替换。
+
+```java
+final String a = "hello";
+final String b = a;
+final String c = getHello();
+```
+
+a在编译期间就能确定下来，而b、c不行，所以a是宏变量，b、c不是。
+
 **104、什么是逃逸分析？**
+
+　　在计算机语言编译器优化原理中，逃逸分析是指分析指针动态范围的方法，它同编译器优化原理的指针分析和外形分析相关联。当变量（或者对象）在方法中分配后，其指针有可能被返回或者被全局引用，这样就会被其他方法或者线程所引用，这种现象称作指针（或者引用）的逃逸(Escape)。通俗点讲，如果一个对象的指针被多个方法或者线程引用时，那么我们就称这个对象的指针（或对象）的逃逸（Escape）。
 
 **105、什么是伪共享？有什么解决方案？**
 
+1. 什么是伪共享
+
+CPU 缓存系统中是以缓存行（cache line）为单位存储的。目前主流的 CPU Cache 的 Cache Line 大小都是 64 Bytes。在多线程情况下，如果需要修改“共享同一个缓存行的变量”，就会无意中影响彼此的性能，这就是伪共享（False Sharing）。
+
+2. 缓存行
+
+由于共享变量在 CPU 缓存中的存储是以缓存行为单位，一个缓存行可以存储多个变量（存满当前缓存行的字节数）；而CPU对缓存的修改又是以缓存行为最小单位的，那么就会出现上诉的伪共享问题。
+
+Cache Line 可以简单的理解为 CPU Cache 中的最小缓存单位，今天的 CPU 不再是按字节访问内存，而是以 64 字节为单位的块(chunk)拿取，称为一个缓存行(cache line)。当你读一个特定的内存地址，整个缓存行将从主存换入缓存，并且访问同一个缓存行内的其它值的开销是很小的。
+
+\5. MESI 协议
+
+多核 CPU 都有自己的专有缓存（一般为L1，L2），以及同一个 CPU 插槽之间的核共享的缓存（一般为L3）。不同核心的CPU缓存中难免会加载同样的数据，那么如何保证数据的一致性呢，就是 MESI 协议了。
+
+
+
+在 MESI 协议中，每个 Cache line 有4个状态，可用 2 个 bit 表示，它们分别是：
+
+M(Modified)：这行数据有效，数据被修改了，和内存中的数据不一致，数据只存在于本 Cache 中；
+
+E(Exclusive)：这行数据有效，数据和内存中的数据一致，数据只存在于本 Cache 中；
+
+S(Shared)：这行数据有效，数据和内存中的数据一致，数据存在于很多 Cache 中；
+
+I(Invalid)：这行数据无效。
+
+那么，假设有一个变量i=3（应该是包括变量i的缓存块，块大小为缓存行大小）；已经加载到多核（a,b,c）的缓存中，此时该缓存行的状态为S；此时其中的一个核a改变了变量i的值，那么在核a中的当前缓存行的状态将变为M，b,c核中的当前缓存行状态将变为I。如下图：
+
+![](http://8.130.25.175:8080/img/6f8d40f1af7f470589e170a5cca97f7e.png)
+
+6. 解决原理
+
+为了避免由于 false sharing 导致 Cache Line 从 L1,L2,L3 到主存之间重复载入，我们可以使用数据填充的方式来避免，即单个数据填充满一个CacheLine。这本质是一种空间换时间的做法。
+
 **106、Java 有没有 goto 关键字？**
 
+Java语言有没有goto关键字? 答：goto是java语言中的保留字，**目前还没有在java中使用**。 goto关键字是C语言中的，goto语句通常与条件语句配合使用，可用来实现条件转移， 构成循环，跳出循环体等功能。
+
 **107、Java 中有没有指针的概念？**
+
+**java中说“指针”，实际上就是说的引用**：有个Person类，我们来创建个对象：`Person x = new Person();`。这里就含有一个变量x，没错，这个引用型变量，实质上就是指针。
 
 **108、Java 中的 classpath 环境变量作用？**
 
 **109、Math.round(1.5) 等于多少？**
 
+2 四舍五入
+
 **110、Math.round(-1.5) 等于多少？**
 
+-1 正负数都是+0.5然后向下取整
+
 **111、Java 8 都新增了哪些新特性？**
+
+**java8新特性**有：1、接口的默认方法；2、Lambda 表达式；3、函数式接口；4、方法引用和构造器引用；5、Stream API；6、Date/Time API(JSR 310)；7、Optional类；**8**、Nashorn JavaScript引擎。
 
 **112、Java 8 中的 Lambda 表达式有啥用？**
 
 **113、Java 8 中的 Optional 类有什么用？**
+
+Optional类是Java8新引进的一个**主要用于解决的问题是臭名昭著的空指针异常（NullPointerException|）的一个类**。 本质上，这是一个包含有可选值的包装类，这意味着Optional 类既可以含有对象也可以为空。 Optional 是Java 实现函数式编程的强劲一步，并且帮助在范式中实现。
+
+```java
+import java.util.Optional;
+ 
+public class Java8Tester {
+   public static void main(String args[]){
+   
+      Java8Tester java8Tester = new Java8Tester();
+      Integer value1 = null;
+      Integer value2 = new Integer(10);
+        
+      // Optional.ofNullable - 允许传递为 null 参数
+      Optional<Integer> a = Optional.ofNullable(value1);
+        
+      // Optional.of - 如果传递的参数是 null，抛出异常 NullPointerException
+      Optional<Integer> b = Optional.of(value2);
+      System.out.println(java8Tester.sum(a,b));
+   }
+    
+   public Integer sum(Optional<Integer> a, Optional<Integer> b){
+    
+      // Optional.isPresent - 判断值是否存在
+        
+      System.out.println("第一个参数值存在: " + a.isPresent());
+      System.out.println("第二个参数值存在: " + b.isPresent());
+        
+      // Optional.orElse - 如果值存在，返回它，否则返回默认值
+      Integer value1 = a.orElse(new Integer(0));
+        
+      //Optional.get - 获取值，值需要存在
+      Integer value2 = b.get();
+      return value1 + value2;
+   }
+}
+```
+
+结果为：
+
+```shell
+$ javac Java8Tester.java 
+$ java Java8Tester
+第一个参数值存在: false
+第二个参数值存在: true
+10
+```
 
 **114、Java 8 中的 Stream 有啥用？**
 
@@ -846,8 +1188,139 @@ transient是Java语言的关键字，**用来表示一个成员变量不是该�
 
 **116、Java 8 中的方法引用是指什么？**
 
+Java 8引入了方法引用（method reference）作为**一种语言特性，它可以简化代码，使得代码更加易读和易于维护**。 方法引用可以被视为Lambda表达式的简写形式，可以用来替代Lambda表达式中只调用一个已有方法的情况。 总的来说该特性使得Java代码更加简洁和灵活。
+
+**使用场景**
+
+Java 8中支持四种不同类型的方法引用：静态方法引用、实例方法引用、构造方法引用、数组引用
+
+下面我们分别介绍这四种方法引用的语法和使用场景。
+
+**1、静态方法引用**
+
+静态方法引用是指引用一个已经存在的静态方法。它的语法为：`ClassName::staticMethodName`，其中ClassName是类名，staticMethodName是静态方法名。例如：
+
+```java
+// 定义一个函数式接口
+interface Converter<F, T> {
+    T convert(F from);
+}
+
+// 定义一个静态方法
+class Utils {
+    public static int stringToInt(String str) {
+        return Integer.parseInt(str);
+    }
+}
+
+// 使用静态方法引用来实现一个字符串到整数的转换器
+Converter<String, Integer> converter = Utils::stringToInt;
+int result = converter.convert("123");
+System.out.println(result); // 输出123
+```
+
+在上述示例中，我们定义了一个静态方法`stringToInt()`，它接受一个字符串作为参数，并将其转换为整数。然后使用静态方法引用来创建一个Converter函数式接口的实例。最后使用该实例将字符串"123"转换为整数并输出结果。
+
+**2、实例方法引用**
+
+实例方法引用是指引用一个已经存在的实例方法。它的语法为：`object::instanceMethodName`，其中object是对象名，instanceMethodName是实例方法名。例如：
+
+```Java
+// 定义一个函数式接口
+interface Converter<F, T> {
+    T convert(F from);
+}
+
+// 定义一个实例方法
+class Utils {
+    public int stringToInt(String str) {
+        return Integer.parseInt(str);
+    }
+}
+
+// 使用实例方法引用来实现一个字符串到整数的转换器
+Utils utils = new Utils();
+Converter<String, Integer> converter = utils::stringToInt;
+int result = converter.convert("123");
+System.out.println(result); // 输出123
+```
+
+在上述示例中，我们定义了一个实例方法`stringToInt()`，它接受一个字符串作为参数，并将其转换为整数。然后使用实例方法引用来创建一个Converter函数式接口的实例。最后使用该实例将字符串"123"转换为整数并输出结果。
+
+**3、构造方法引用**
+
+构造方法引用是指引用一个已经存在的构造方法。它的语法为：`ClassName::new`，其中ClassName是类名。例如：
+
+```java
+// 定义一个函数式接口 
+interface Converter<F, T> { 
+    T convert(F from);
+}
+
+// 定义一个实体类 
+class Person { 
+    private String name; 
+    private int age;
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+}
+// 使用构造方法引用来创建一个Person对象的工厂 
+Converter<String, Person> converter = Person::new; 
+Person person = converter.convert("张三,20"); 
+System.out.println("name: " + person.getName() + ", age: " + person.getAge()); // 输出name: 张三, age: 20
+
+```
+
+在上述示例中，我们定义了一个实体类Person，它有一个带有两个参数的构造方法。然后使用构造方法引用来创建一个Converter函数式接口的实例，该实例可以将一个字符串转换为一个Person对象。最后使用该实例将字符串"张三,20"转换为Person对象并输出结果。
+
+**4. 数组引用**
+
+数组引用是指引用一个已经存在的数组。它的语法为：`TypeName[]::new`，其中TypeName是数组元素类型。例如：
+
+```java
+// 定义一个函数式接口 
+interface ArrayFactory<T> {    
+    T[] create(int size); 
+} 
+// 使用数组引用来创建一个字符串数组的工厂 
+ArrayFactory<String> factory = String[]::new; 
+String[] array = factory.create(3); 
+array[0] = "Java"; 
+array[1] = "is"; 
+array[2] = "awesome";
+System.out.println(Arrays.toString(array)); // 输出[Java, is, awesome]
+
+```
+
+在上述示例中，我们定义了一个函数式接口ArrayFactory，它可以创建一个指定大小的数组。然后使用数组引用来创建一个String数组的工厂。最后使用该工厂创建一个大小为3的数组并将其输出。
+
+### **总结**
+
+方法引用可以用于任何函数式接口的实现，尤其是在需要多次调用同一方法时，可以大大简化代码。例如，当需要对一个集合进行排序时，可以使用方法引用来指定排序依据，从而大大简化代码。另外，当需要将一个Lambda表达式传递给一个方法作为参数时，也可以使用方法引用来替代Lambda表达式，使代码更加易读。总而言之方法引用具有如下优点：
+
+1. 代码简洁：使用方法引用可以减少代码的数量，使得代码更加简洁和易读。尤其是对于一些常用的方法，使用方法引用可以避免重复书写代码。
+2. 易于维护：方法引用使得代码更加易于维护。当需要修改一个方法时，只需要修改该方法的实现，而不需要修改所有调用该方法的Lambda表达式。
+3. 提高代码可读性：方法引用提高了代码的可读性。对于只调用一个已有方法的Lambda表达式，使用方法引用可以更加清晰地表达代码的意图。
+4. 可以使代码更加函数式：方法引用可以使代码更加函数式。它可以将方法调用看作是一种函数，进而提高代码的函数式编程风格。
+
+总之，方法引用是Java 8中非常有用的语言特性，它可以帮助开发人员更加简洁地编写代码，提高代码的可读性和可维护性，同时也可以使代码更加函数式。
+
 **117、Java 8 中的函数式编程怎么用？**
+
+函数式编程：是一种如何搭建应用程序的方法论。（lambda表达式+Stream流的思想)
 
 **118、怎么创建一个 Stream 流？**
 
 **119、Oracle JDK 和 OpenJDK 有啥区别？**
+
+Oracle JDK和OpenJDK的区别是： 1. **Oracle JDK是由Oracle Corporation维护和支持的Java开发包，而OpenJDK是一个开源项目，由不同的公司和个人共同维护和开发**。 2. Oracle. 3. Oracle JDK有商业许可证，并且需要付费使用。
