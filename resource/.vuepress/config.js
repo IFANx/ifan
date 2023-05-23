@@ -20,6 +20,8 @@ module.exports = {
                 collapsable: true,
                 children: [
                        {   title: "java的反射机制", path: "/Notes/JVM/java的反射机制" },
+                       {   title: "Java集合", path: "/Notes/JVM/Java集合" },
+                       {   title: "JVM相关", path: "/Notes/JVM/JVM相关" },
                        {   title: "Java基础", path: "/Notes/JVM/Java基础" },
                 ]
             },               {
