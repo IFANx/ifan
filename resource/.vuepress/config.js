@@ -20,12 +20,16 @@ module.exports = {
                 collapsable: true,
                 children: [
                        {   title: "java的反射机制", path: "/Notes/JVM/java的反射机制" },
+                       {   title: "Java集合", path: "/Notes/JVM/Java集合" },
+                       {   title: "JVM相关", path: "/Notes/JVM/JVM相关" },
+                       {   title: "Java基础", path: "/Notes/JVM/Java基础" },
                 ]
             },               {
                 title: '操作系统',
                 sidebarDepth: 3,
                 collapsable: true,
                 children: [
+                       {   title: "四、文件系统", path: "/Notes/操作系统/四、文件系统" },
                        {   title: "一、进程与线程", path: "/Notes/操作系统/一、进程与线程" },
                        {   title: "引论", path: "/Notes/操作系统/引论" },
                        {   title: "二、存储管理", path: "/Notes/操作系统/二、存储管理" },
@@ -39,6 +43,7 @@ module.exports = {
                        {   title: "UDP", path: "/Notes/计算机网络/UDP" },
                        {   title: "应用层协议", path: "/Notes/计算机网络/应用层协议" },
                        {   title: "传输层协议", path: "/Notes/计算机网络/传输层协议" },
+                       {   title: "网络层协议", path: "/Notes/计算机网络/网络层协议" },
                 ]
             },               {
                 title: 'Notes',
