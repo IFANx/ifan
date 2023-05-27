@@ -12,6 +12,7 @@ yarn resource:build
 java java/src/MoveFiles.java
 # 进入生成的文件夹
 
+# ./upload2Server.sh
 #cd resource/.vuepress/dist
 
 # git init

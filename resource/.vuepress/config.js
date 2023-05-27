@@ -43,7 +43,9 @@ module.exports = {
                        {   title: "UDP", path: "/Notes/计算机网络/UDP" },
                        {   title: "应用层协议", path: "/Notes/计算机网络/应用层协议" },
                        {   title: "传输层协议", path: "/Notes/计算机网络/传输层协议" },
-                       {   title: "网络层协议", path: "/Notes/计算机网络/网络层协议" },
+                       {   title: "链路层和局域网", path: "/Notes/计算机网络/链路层和局域网" },
+                       {   title: "网络层协议-数据平面", path: "/Notes/计算机网络/网络层协议-数据平面" },
+                       {   title: "网络层协议-控制平面", path: "/Notes/计算机网络/网络层协议-控制平面" },
                 ]
             },               {
                 title: 'Notes',
