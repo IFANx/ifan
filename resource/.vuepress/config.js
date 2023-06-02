@@ -35,6 +35,14 @@ module.exports = {
                        {   title: "二、存储管理", path: "/Notes/操作系统/二、存储管理" },
                 ]
             },               {
+                title: 'Netty',
+                sidebarDepth: 3,
+                collapsable: true,
+                children: [
+                       {   title: "2Netty 应用程序", path: "/Notes/Netty/2Netty 应用程序" },
+                       {   title: "1.Netty的概念及体系结构", path: "/Notes/Netty/1.Netty的概念及体系结构" },
+                ]
+            },               {
                 title: '计算机网络',
                 sidebarDepth: 3,
                 collapsable: true,
