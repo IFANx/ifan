@@ -15,6 +15,7 @@ java java/src/MoveFiles.java
 # ./upload2Server.sh
 #cd resource/.vuepress/dist
 
+
 # git init
 git add .
 git commit -m 'deploy'
