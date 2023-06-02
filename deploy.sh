@@ -14,7 +14,7 @@ java java/src/MoveFiles.java
 
 # ./upload2Server.sh
 #cd resource/.vuepress/dist
-
+cp cv.html ./docs/
 
 # git init
 git add .
