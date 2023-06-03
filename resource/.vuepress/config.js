@@ -23,6 +23,7 @@ module.exports = {
                        {   title: "Java集合", path: "/Notes/JVM/Java集合" },
                        {   title: "JVM相关", path: "/Notes/JVM/JVM相关" },
                        {   title: "Java基础", path: "/Notes/JVM/Java基础" },
+                       {   title: "JUC", path: "/Notes/JVM/JUC" },
                 ]
             },               {
                 title: '操作系统',
@@ -43,6 +44,15 @@ module.exports = {
                        {   title: "1.Netty的概念及体系结构", path: "/Notes/Netty/1.Netty的概念及体系结构" },
                 ]
             },               {
+                title: 'JUC',
+                sidebarDepth: 3,
+                collapsable: true,
+                children: [
+                       {   title: "ReentrantLock", path: "/Notes/JVM/JUC/ReentrantLock" },
+                       {   title: "AQS详解", path: "/Notes/JVM/JUC/AQS详解" },
+                       {   title: "并发编程", path: "/Notes/JVM/JUC/并发编程" },
+                ]
+            },               {
                 title: '计算机网络',
                 sidebarDepth: 3,
                 collapsable: true,
@@ -53,6 +63,7 @@ module.exports = {
                        {   title: "传输层协议", path: "/Notes/计算机网络/传输层协议" },
                        {   title: "链路层和局域网", path: "/Notes/计算机网络/链路层和局域网" },
                        {   title: "网络层协议-数据平面", path: "/Notes/计算机网络/网络层协议-数据平面" },
+                       {   title: "额外", path: "/Notes/计算机网络/额外" },
                        {   title: "网络层协议-控制平面", path: "/Notes/计算机网络/网络层协议-控制平面" },
                 ]
             },               {
