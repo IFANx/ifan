@@ -102,7 +102,7 @@ synchronized实际上是非公平的，新来的线程有可能立即获得监�
 
 https://pdai.tech/md/java/thread/java-thread-x-lock-all.html
 
-![java-lock-1](/Users/kkxu/NodeProjects/ifan/ifan/images/java-lock-1.png)
+![java-lock-1](http://8.130.25.175:8080/img/java-lock-1.png)
 
 Java中，synchronized关键字和Lock的实现类都是悲观锁。
 
@@ -156,7 +156,7 @@ public class Widget {
 
 ------
 
-![java-lock-14](/Users/kkxu/NodeProjects/ifan/ifan/images/java-lock-14.png)
+![java-lock-14](http://8.130.25.175:8080/img/java-lock-14.png)
 
 
 
@@ -222,7 +222,7 @@ Unsafe是位于sun.misc包下的一个类，主要提供一些用于执行低级
 
 先来看下这张图，对UnSafe类总体功能：
 
-![java-thread-x-atomicinteger-unsafe](/Users/kkxu/NodeProjects/ifan/ifan/images/java-thread-x-atomicinteger-unsafe.png)
+![java-thread-x-atomicinteger-unsafe](http://8.130.25.175:8080/img/java-thread-x-atomicinteger-unsafe.png)
 
 
 

@@ -21,9 +21,11 @@ module.exports = {
                 children: [
                        {   title: "java的反射机制", path: "/Notes/JVM/java的反射机制" },
                        {   title: "Java集合", path: "/Notes/JVM/Java集合" },
+                       {   title: "Java常用机制-SPI机制", path: "/Notes/JVM/Java常用机制-SPI机制" },
                        {   title: "JVM相关", path: "/Notes/JVM/JVM相关" },
                        {   title: "Java基础", path: "/Notes/JVM/Java基础" },
                        {   title: "JUC", path: "/Notes/JVM/JUC" },
+                       {   title: "Java注解", path: "/Notes/JVM/Java注解" },
                 ]
             },               {
                 title: '操作系统',
@@ -53,6 +55,26 @@ module.exports = {
                        {   title: "并发编程", path: "/Notes/JVM/JUC/并发编程" },
                 ]
             },               {
+                title: 'Java IO',
+                sidebarDepth: 3,
+                collapsable: true,
+                children: [
+                       {   title: "Java IO分类", path: "/Notes/JVM/Java IO/Java IO分类" },
+                       {   title: "Java IO知识体系", path: "/Notes/JVM/Java IO/Java IO知识体系" },
+                ]
+            },               {
+                title: 'Spring',
+                sidebarDepth: 3,
+                collapsable: true,
+                children: [
+                       {   title: "Spring框架知识体系", path: "/Notes/JVM/Spring/Spring框架知识体系" },
+                       {   title: "Spring进阶-IOC体系结构设计", path: "/Notes/JVM/Spring/Spring进阶-IOC体系结构设计" },
+                       {   title: "Spring进阶-Spring AOP实现原理之AOP切面实现", path: "/Notes/JVM/Spring/Spring进阶-Spring AOP实现原理之AOP切面实现" },
+                       {   title: "Spring基础 - SpringMVC请求流程和案例", path: "/Notes/JVM/Spring/Spring基础 - SpringMVC请求流程和案例" },
+                       {   title: "Spring基础 - Spring核心之控制反转(IOC)", path: "/Notes/JVM/Spring/Spring基础 - Spring核心之控制反转(IOC)" },
+                       {   title: "Spring基础 - Spring核心之面向切面编程(AOP)", path: "/Notes/JVM/Spring/Spring基础 - Spring核心之面向切面编程(AOP)" },
+                ]
+            },               {
                 title: '计算机网络',
                 sidebarDepth: 3,
                 collapsable: true,
@@ -72,8 +94,6 @@ module.exports = {
                 collapsable: true,
                 children: [
                        {   title: "图床", path: "/Notes/图床" },
-                       {   title: "Abstract", path: "/Notes/Abstract" },
-                       {   title: "Interface", path: "/Notes/Interface" },
                 ]
             },        ]
     }
