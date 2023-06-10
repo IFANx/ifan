@@ -63,6 +63,22 @@ module.exports = {
                        {   title: "Java IO知识体系", path: "/Notes/JVM/Java IO/Java IO知识体系" },
                 ]
             },               {
+                title: 'SpringBoot',
+                sidebarDepth: 3,
+                collapsable: true,
+                children: [
+                       {   title: "Untitled 2", path: "/Notes/JVM/SpringBoot/Untitled 2" },
+                       {   title: "SpringBoot接口 - 如何对接口进行签名", path: "/Notes/JVM/SpringBoot/SpringBoot接口 - 如何对接口进行签名" },
+                       {   title: "SpringBoot接口 - 如何访问外部接口", path: "/Notes/JVM/SpringBoot/SpringBoot接口 - 如何访问外部接口" },
+                       {   title: "SpringBoot常用注解", path: "/Notes/JVM/SpringBoot/SpringBoot常用注解" },
+                       {   title: "SpringBoot接口 - 如何保证接口幂等", path: "/Notes/JVM/SpringBoot/SpringBoot接口 - 如何保证接口幂等" },
+                       {   title: "SpringBoot", path: "/Notes/JVM/SpringBoot/SpringBoot" },
+                       {   title: "SpringBoot接口 - 如何统一接口封装", path: "/Notes/JVM/SpringBoot/SpringBoot接口 - 如何统一接口封装" },
+                       {   title: "SpringBoot入门-配置热部署devtools", path: "/Notes/JVM/SpringBoot/SpringBoot入门-配置热部署devtools" },
+                       {   title: "SpringBoot接口 - 如何提供多个版本接口", path: "/Notes/JVM/SpringBoot/SpringBoot接口 - 如何提供多个版本接口" },
+                       {   title: "SpringBoot接口 - 如何生成接口文档之Swagger技术栈", path: "/Notes/JVM/SpringBoot/SpringBoot接口 - 如何生成接口文档之Swagger技术栈" },
+                ]
+            },               {
                 title: 'Spring',
                 sidebarDepth: 3,
                 collapsable: true,

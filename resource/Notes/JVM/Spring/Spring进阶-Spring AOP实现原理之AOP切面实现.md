@@ -8,6 +8,10 @@ https://pdai.tech/md/spring/spring-x-framework-aop-source-1.html
 
 ------
 
+上文我们介绍了Spring AOP原理解析的切面实现过程(将切面类的所有切面方法根据使用的注解生成对应Advice，并将Advice连同切入点匹配器和切面类等信息一并封装到Advisor)。本文在此基础上继续介绍，代理（cglib代理和JDK代理）的创建过程。@pdai
+
+------
+
 
 
 
