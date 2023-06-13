@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Docker创建FTP服务器 | Notes</title>
+    <meta name="generator" content="VuePress 1.9.9">
+    
+    <meta name="description" content="办法总比问题多">
+    
+    <link rel="preload" href="/ifan/assets/css/0.styles.449c03be.css" as="style"><link rel="preload" href="/ifan/assets/js/app.623b705f.js" as="script"><link rel="preload" href="/ifan/assets/js/2.733019b2.js" as="script"><link rel="preload" href="/ifan/assets/js/51.cbd814d6.js" as="script"><link rel="prefetch" href="/ifan/assets/js/10.6ad50f59.js"><link rel="prefetch" href="/ifan/assets/js/11.4cd18427.js"><link rel="prefetch" href="/ifan/assets/js/12.53231ba7.js"><link rel="prefetch" href="/ifan/assets/js/13.c605ba48.js"><link rel="prefetch" href="/ifan/assets/js/14.73b4d4a4.js"><link rel="prefetch" href="/ifan/assets/js/15.b114db80.js"><link rel="prefetch" href="/ifan/assets/js/16.22f92a43.js"><link rel="prefetch" href="/ifan/assets/js/17.16e8f69c.js"><link rel="prefetch" href="/ifan/assets/js/18.795b9b93.js"><link rel="prefetch" href="/ifan/assets/js/19.0ed9e4cd.js"><link rel="prefetch" href="/ifan/assets/js/20.3a23e11d.js"><link rel="prefetch" href="/ifan/assets/js/21.2604ea6a.js"><link rel="prefetch" href="/ifan/assets/js/22.5ef9b6d7.js"><link rel="prefetch" href="/ifan/assets/js/23.cc21124e.js"><link rel="prefetch" href="/ifan/assets/js/24.52314673.js"><link rel="prefetch" href="/ifan/assets/js/25.4f26f017.js"><link rel="prefetch" href="/ifan/assets/js/26.c29df8d2.js"><link rel="prefetch" href="/ifan/assets/js/27.d87ba41e.js"><link rel="prefetch" href="/ifan/assets/js/28.bf584623.js"><link rel="prefetch" href="/ifan/assets/js/29.9b38e4af.js"><link rel="prefetch" href="/ifan/assets/js/3.073b16b1.js"><link rel="prefetch" href="/ifan/assets/js/30.73a41ff9.js"><link rel="prefetch" href="/ifan/assets/js/31.6175f73f.js"><link rel="prefetch" href="/ifan/assets/js/32.a5a3fa66.js"><link rel="prefetch" href="/ifan/assets/js/33.d1137524.js"><link rel="prefetch" href="/ifan/assets/js/34.e7ca6d31.js"><link rel="prefetch" href="/ifan/assets/js/35.41ba26a2.js"><link rel="prefetch" href="/ifan/assets/js/36.64711fd4.js"><link rel="prefetch" href="/ifan/assets/js/37.ade7b10e.js"><link rel="prefetch" href="/ifan/assets/js/38.0b7c97da.js"><link rel="prefetch" href="/ifan/assets/js/39.21073b49.js"><link rel="prefetch" href="/ifan/assets/js/4.fc333d27.js"><link rel="prefetch" href="/ifan/assets/js/40.46aca564.js"><link rel="prefetch" href="/ifan/assets/js/41.6976665e.js"><link rel="prefetch" href="/ifan/assets/js/42.2012e2f1.js"><link rel="prefetch" href="/ifan/assets/js/43.83058579.js"><link rel="prefetch" href="/ifan/assets/js/44.ed7bed00.js"><link rel="prefetch" href="/ifan/assets/js/45.15028181.js"><link rel="prefetch" href="/ifan/assets/js/46.bac712cd.js"><link rel="prefetch" href="/ifan/assets/js/47.a1566017.js"><link rel="prefetch" href="/ifan/assets/js/48.cf14bc44.js"><link rel="prefetch" href="/ifan/assets/js/49.1be871cd.js"><link rel="prefetch" href="/ifan/assets/js/5.bfef3080.js"><link rel="prefetch" href="/ifan/assets/js/50.5f1022e9.js"><link rel="prefetch" href="/ifan/assets/js/52.bacd03ec.js"><link rel="prefetch" href="/ifan/assets/js/53.b08a9779.js"><link rel="prefetch" href="/ifan/assets/js/54.0cc63836.js"><link rel="prefetch" href="/ifan/assets/js/55.4917ff42.js"><link rel="prefetch" href="/ifan/assets/js/56.638d658f.js"><link rel="prefetch" href="/ifan/assets/js/57.c45739da.js"><link rel="prefetch" href="/ifan/assets/js/58.ab2f2b82.js"><link rel="prefetch" href="/ifan/assets/js/59.1c6c1e37.js"><link rel="prefetch" href="/ifan/assets/js/6.2d0a63f8.js"><link rel="prefetch" href="/ifan/assets/js/60.9a935a29.js"><link rel="prefetch" href="/ifan/assets/js/61.118ef18f.js"><link rel="prefetch" href="/ifan/assets/js/62.e58aefc4.js"><link rel="prefetch" href="/ifan/assets/js/63.9d768301.js"><link rel="prefetch" href="/ifan/assets/js/64.bb34f01b.js"><link rel="prefetch" href="/ifan/assets/js/65.16620407.js"><link rel="prefetch" href="/ifan/assets/js/7.cb0ad016.js"><link rel="prefetch" href="/ifan/assets/js/8.6ce11975.js"><link rel="prefetch" href="/ifan/assets/js/9.5976246e.js">
+    <link rel="stylesheet" href="/ifan/assets/css/0.styles.449c03be.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/ifan/" class="home-link router-link-active"><!----> <span class="site-name">Notes</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/ifan/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="what?" class="dropdown-title"><span class="title">what?</span> <span class="arrow down"></span></button> <button type="button" aria-label="what?" class="mobile-dropdown-title"><span class="title">what?</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://github.com/IFANx" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://gitee.com/IFANx" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Gitee
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/ifan/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="what?" class="dropdown-title"><span class="title">what?</span> <span class="arrow down"></span></button> <button type="button" aria-label="what?" class="mobile-dropdown-title"><span class="title">what?</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://github.com/IFANx" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://gitee.com/IFANx" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Gitee
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>JVM</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Maven</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>操作系统</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Netty</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>JUC</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Java IO</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>SpringBoot</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Spring</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>计算机网络</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Notes</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>docker</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/ifan/Notes/docker/docker部署ftp文件服务器.html" class="active sidebar-link">docker部署ftp文件服务器</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="docker创建ftp服务器"><a href="#docker创建ftp服务器" class="header-anchor">#</a> Docker创建FTP服务器</h1> <p>现在账户密码均为root，挂在目录为/opt/vsftpd/file</p> <p>https://blog.csdn.net/qq_25955145/article/details/123923695</p> <p>Docker创建FTP服务器
+一.创建命令如下
+docker run -d -p  21:21 -p  20:20 -p 21100-21110:21100-21110 -v /opt/vsftpd/file:/home/vsftpd -e FTP_USER=root -e FTP_PASS=root   -e PASV_MIN_PORT=21100 -e PASV_MAX_PORT=21110 -e PASV_ADDRESS=8.130.25.175 -e PASV_ENABLE=YES --name ftp -- --privileged=true fauria/vsftpd
+1
+二.命令含义
+参数	含义
+-d	后台启动容器
+-p 20:20	将外部的20端口映射到内部的20端口
+-p 21:21	将外部的21端口映射到内部的21端口
+-p 21100-21110:21100-21110	将外部的 21100-21110端口映射到内部的21100-21110端口
+-v /opt/vsftpd/file:/home/vsftpd	将本地磁盘的 /opt/vsftpd/file路径映射到内部的/home/vsftpd路径
+-e FTP_USER=admin	ftp的主用户
+-e FTP_PASS=1234	ftp主用户的密码
+-e PASV_MIN_PORT=21100	最小被动端口
+-e PASV_MAX_PORT=21110	最大被动端口
+-e PASV_ADDRESS=10.73.139.201	指定本机的ip
+-e PASV_ENABLE=YES	启动被动模式
+–name ftp	取一个名字，之后可以用(docker stop 名字 )来停止容器
+–restart=always	开机自启动
+–privileged=true	容器内用户获取root权限
+fauria/vsftpd	仓库的镜像
+三.客户端连接
+1.客户端可以直接安装filezilla进行连接
+如果你的客户端连接不上，你需要用telnet命令来看下</p> <p>telnet  10.73.139.201 21
+1
+如果报错，那可能是防火墙没有打通</p> <p>2.如果是mac用户，也可以用终端的ftp命令进行连接
+ftp 10.73.139.201
+1
+输入账号admin，密码1234</p> <p>然后ls命令，如果报错</p> <p>500 Illegal PORT command.
+500 Unknown command.
+425 Use PORT or PASV first.
+1
+2
+3
+可以在ftp下执行以下命令</p> <p>pass
+1
+输出</p> <p>Passive mode on
+1
+这个时候，就可以正常的ls了</p> <p>四.创建新用户
+1.尝试进入容器内部进行交互
+docker exec -i -t ftp bash
+1
+参数	含义
+-i	连接容器的STDIN和容器外的STDIN
+-t	告诉 docker 内部的主进程它的输入是终端设备
+ftp	指定要进入的容器的名字（这个是在创建的时候使用–name指定的）
+bash	使用bash作为终端
+2.给新的用户创建文件夹
+新用户：张三
+文件夹：zhangsan
+mkdir /home/vsftpd/zhangsan
+1
+注意：该命令在容器内执行</p> <p>3.将账号密码信息写入文件
+echo -e &quot;zhangsan\n123456&quot; &gt;&gt; /etc/vsftpd/virtual_users.txt
+1
+注意：该命令在容器内执行</p> <p>4.使用脚本读取刚刚写入的文件
+/usr/bin/db_load -T -t hash -f /etc/vsftpd/virtual_users.txt /etc/vsftpd/virtual_users.db
+1
+注意：该命令在容器内执行</p> <p>5.退出容器
+exit
+1
+注意：该命令在容器内执行</p> <p>6.重启ftp
+docker restart ftp
+1
+此时，下面的账号密码就可以登录ftp</p> <p>属性	值
+账号	zhangsan
+密码	123456
+————————————————</p></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/ifan/Notes/图床.html" class="prev">
+        图床
+      </a></span> <!----></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/ifan/assets/js/app.623b705f.js" defer></script><script src="/ifan/assets/js/2.733019b2.js" defer></script><script src="/ifan/assets/js/51.cbd814d6.js" defer></script>
+  </body>
+</html>

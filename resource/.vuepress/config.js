@@ -28,6 +28,14 @@ module.exports = {
                        {   title: "Java注解", path: "/Notes/JVM/Java注解" },
                 ]
             },               {
+                title: 'Maven',
+                sidebarDepth: 3,
+                collapsable: true,
+                children: [
+                       {   title: "Maven自定义依赖并推送到远程仓库", path: "/Notes/Maven/Maven自定义依赖并推送到远程仓库" },
+                       {   title: "使用Nexus在云服务器搭建Maven私服", path: "/Notes/Maven/使用Nexus在云服务器搭建Maven私服" },
+                ]
+            },               {
                 title: '操作系统',
                 sidebarDepth: 3,
                 collapsable: true,
@@ -67,16 +75,28 @@ module.exports = {
                 sidebarDepth: 3,
                 collapsable: true,
                 children: [
-                       {   title: "Untitled 2", path: "/Notes/JVM/SpringBoot/Untitled 2" },
+                       {   title: "Untitled 1", path: "/Notes/JVM/SpringBoot/Untitled 1" },
+                       {   title: "SpringBoot接口 - 如何实现接口限流之分布式", path: "/Notes/JVM/SpringBoot/SpringBoot接口 - 如何实现接口限流之分布式" },
                        {   title: "SpringBoot接口 - 如何对接口进行签名", path: "/Notes/JVM/SpringBoot/SpringBoot接口 - 如何对接口进行签名" },
-                       {   title: "SpringBoot接口 - 如何访问外部接口", path: "/Notes/JVM/SpringBoot/SpringBoot接口 - 如何访问外部接口" },
+                       {   title: "SpringBoot集成MySQL - 基于JPA和Mybatis的封装", path: "/Notes/JVM/SpringBoot/SpringBoot集成MySQL - 基于JPA和Mybatis的封装" },
+                       {   title: "SpringBoot集成MySQL - MyBatis-Plus基于字段隔离的多租户", path: "/Notes/JVM/SpringBoot/SpringBoot集成MySQL - MyBatis-Plus基于字段隔离的多租户" },
                        {   title: "SpringBoot常用注解", path: "/Notes/JVM/SpringBoot/SpringBoot常用注解" },
-                       {   title: "SpringBoot接口 - 如何保证接口幂等", path: "/Notes/JVM/SpringBoot/SpringBoot接口 - 如何保证接口幂等" },
                        {   title: "SpringBoot", path: "/Notes/JVM/SpringBoot/SpringBoot" },
                        {   title: "SpringBoot接口 - 如何统一接口封装", path: "/Notes/JVM/SpringBoot/SpringBoot接口 - 如何统一接口封装" },
+                       {   title: "SpringBoot应用部署 - 使用Docker Compose对容器编排管理", path: "/Notes/JVM/SpringBoot/SpringBoot应用部署 - 使用Docker Compose对容器编排管理" },
                        {   title: "SpringBoot入门-配置热部署devtools", path: "/Notes/JVM/SpringBoot/SpringBoot入门-配置热部署devtools" },
                        {   title: "SpringBoot接口 - 如何提供多个版本接口", path: "/Notes/JVM/SpringBoot/SpringBoot接口 - 如何提供多个版本接口" },
+                       {   title: "SpringBoot集成文件 - 大文件的上传(异步，分片，断点续传和秒传)", path: "/Notes/JVM/SpringBoot/SpringBoot集成文件 - 大文件的上传(异步，分片，断点续传和秒传)" },
+                       {   title: "SpringBoot集成Redis - Redis分布式锁的实现之Jedis(setNXPX+Lua)", path: "/Notes/JVM/SpringBoot/SpringBoot集成Redis - Redis分布式锁的实现之Jedis(setNXPX+Lua)" },
+                       {   title: "SpringBoot集成文件-基础的文件上传和下载", path: "/Notes/JVM/SpringBoot/SpringBoot集成文件-基础的文件上传和下载" },
+                       {   title: "SpringBoot接口 - 如何访问外部接口", path: "/Notes/JVM/SpringBoot/SpringBoot接口 - 如何访问外部接口" },
+                       {   title: "SpringBoot接口 - 如何保证接口幂等", path: "/Notes/JVM/SpringBoot/SpringBoot接口 - 如何保证接口幂等" },
+                       {   title: "SpringBoot接口 - 如何实现接口限流之单实例", path: "/Notes/JVM/SpringBoot/SpringBoot接口 - 如何实现接口限流之单实例" },
+                       {   title: "SpringBoot集成Redis - 基于RedisTemplate+Jedis的数据操作", path: "/Notes/JVM/SpringBoot/SpringBoot集成Redis - 基于RedisTemplate+Jedis的数据操作" },
+                       {   title: "SpringBoot集成MySQL - 基于JPA的封装", path: "/Notes/JVM/SpringBoot/SpringBoot集成MySQL - 基于JPA的封装" },
+                       {   title: "SpringBoot应用部署 - 打包成jar部署", path: "/Notes/JVM/SpringBoot/SpringBoot应用部署 - 打包成jar部署" },
                        {   title: "SpringBoot接口 - 如何生成接口文档之Swagger技术栈", path: "/Notes/JVM/SpringBoot/SpringBoot接口 - 如何生成接口文档之Swagger技术栈" },
+                       {   title: "SpringBoot集成Redis - 基于RedisTemplate+Lettuce数据操作", path: "/Notes/JVM/SpringBoot/SpringBoot集成Redis - 基于RedisTemplate+Lettuce数据操作" },
                 ]
             },               {
                 title: 'Spring',
@@ -110,6 +130,13 @@ module.exports = {
                 collapsable: true,
                 children: [
                        {   title: "图床", path: "/Notes/图床" },
+                ]
+            },               {
+                title: 'docker',
+                sidebarDepth: 3,
+                collapsable: true,
+                children: [
+                       {   title: "docker部署ftp文件服务器", path: "/Notes/docker/docker部署ftp文件服务器" },
                 ]
             },        ]
     }
