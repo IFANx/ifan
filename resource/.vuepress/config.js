@@ -36,41 +36,6 @@ module.exports = {
                        {   title: "使用Nexus在云服务器搭建Maven私服", path: "/Notes/Maven/使用Nexus在云服务器搭建Maven私服" },
                 ]
             },               {
-                title: '操作系统',
-                sidebarDepth: 3,
-                collapsable: true,
-                children: [
-                       {   title: "四、文件系统", path: "/Notes/操作系统/四、文件系统" },
-                       {   title: "一、进程与线程", path: "/Notes/操作系统/一、进程与线程" },
-                       {   title: "引论", path: "/Notes/操作系统/引论" },
-                       {   title: "二、存储管理", path: "/Notes/操作系统/二、存储管理" },
-                ]
-            },               {
-                title: 'Netty',
-                sidebarDepth: 3,
-                collapsable: true,
-                children: [
-                       {   title: "2Netty 应用程序", path: "/Notes/Netty/2Netty 应用程序" },
-                       {   title: "1.Netty的概念及体系结构", path: "/Notes/Netty/1.Netty的概念及体系结构" },
-                ]
-            },               {
-                title: 'JUC',
-                sidebarDepth: 3,
-                collapsable: true,
-                children: [
-                       {   title: "ReentrantLock", path: "/Notes/JVM/JUC/ReentrantLock" },
-                       {   title: "AQS详解", path: "/Notes/JVM/JUC/AQS详解" },
-                       {   title: "并发编程", path: "/Notes/JVM/JUC/并发编程" },
-                ]
-            },               {
-                title: 'Java IO',
-                sidebarDepth: 3,
-                collapsable: true,
-                children: [
-                       {   title: "Java IO分类", path: "/Notes/JVM/Java IO/Java IO分类" },
-                       {   title: "Java IO知识体系", path: "/Notes/JVM/Java IO/Java IO知识体系" },
-                ]
-            },               {
                 title: 'SpringBoot',
                 sidebarDepth: 3,
                 collapsable: true,
@@ -118,6 +83,7 @@ module.exports = {
                        {   title: "TCP", path: "/Notes/计算机网络/TCP" },
                        {   title: "UDP", path: "/Notes/计算机网络/UDP" },
                        {   title: "应用层协议", path: "/Notes/计算机网络/应用层协议" },
+                       {   title: "HTTP详解", path: "/Notes/计算机网络/HTTP详解" },
                        {   title: "传输层协议", path: "/Notes/计算机网络/传输层协议" },
                        {   title: "链路层和局域网", path: "/Notes/计算机网络/链路层和局域网" },
                        {   title: "网络层协议-数据平面", path: "/Notes/计算机网络/网络层协议-数据平面" },
@@ -125,18 +91,73 @@ module.exports = {
                        {   title: "网络层协议-控制平面", path: "/Notes/计算机网络/网络层协议-控制平面" },
                 ]
             },               {
+                title: 'Docker',
+                sidebarDepth: 3,
+                collapsable: true,
+                children: [
+                       {   title: "docker部署ftp文件服务器", path: "/Notes/Docker/docker部署ftp文件服务器" },
+                ]
+            },               {
+                title: 'MySQL',
+                sidebarDepth: 3,
+                collapsable: true,
+                children: [
+                ]
+            },               {
+                title: '操作系统',
+                sidebarDepth: 3,
+                collapsable: true,
+                children: [
+                       {   title: "四、文件系统", path: "/Notes/操作系统/四、文件系统" },
+                       {   title: "一、进程与线程", path: "/Notes/操作系统/一、进程与线程" },
+                       {   title: "引论", path: "/Notes/操作系统/引论" },
+                       {   title: "二、存储管理", path: "/Notes/操作系统/二、存储管理" },
+                ]
+            },               {
+                title: 'Netty',
+                sidebarDepth: 3,
+                collapsable: true,
+                children: [
+                       {   title: "2Netty 应用程序", path: "/Notes/Netty/2Netty 应用程序" },
+                       {   title: "1.Netty的概念及体系结构", path: "/Notes/Netty/1.Netty的概念及体系结构" },
+                ]
+            },               {
+                title: 'JUC',
+                sidebarDepth: 3,
+                collapsable: true,
+                children: [
+                       {   title: "ReentrantLock", path: "/Notes/JVM/JUC/ReentrantLock" },
+                       {   title: "AQS详解", path: "/Notes/JVM/JUC/AQS详解" },
+                       {   title: "并发编程", path: "/Notes/JVM/JUC/并发编程" },
+                ]
+            },               {
+                title: 'Java IO',
+                sidebarDepth: 3,
+                collapsable: true,
+                children: [
+                       {   title: "Java IO分类", path: "/Notes/JVM/Java IO/Java IO分类" },
+                       {   title: "Java IO知识体系", path: "/Notes/JVM/Java IO/Java IO知识体系" },
+                ]
+            },               {
+                title: '基础和原理',
+                sidebarDepth: 3,
+                collapsable: true,
+                children: [
+                       {   title: "SQL-DB", path: "/Notes/数据库/基础和原理/SQL-DB" },
+                ]
+            },               {
+                title: '数据库',
+                sidebarDepth: 3,
+                collapsable: true,
+                children: [
+                       {   title: "编译MySQL源码并执行", path: "/Notes/数据库/编译MySQL源码并执行" },
+                ]
+            },               {
                 title: 'Notes',
                 sidebarDepth: 3,
                 collapsable: true,
                 children: [
                        {   title: "图床", path: "/Notes/图床" },
-                ]
-            },               {
-                title: 'docker',
-                sidebarDepth: 3,
-                collapsable: true,
-                children: [
-                       {   title: "docker部署ftp文件服务器", path: "/Notes/docker/docker部署ftp文件服务器" },
                 ]
             },        ]
     }
