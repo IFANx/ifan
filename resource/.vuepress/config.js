@@ -143,6 +143,7 @@ module.exports = {
                 sidebarDepth: 3,
                 collapsable: true,
                 children: [
+                       {   title: "记录", path: "/Notes/数据库/基础和原理/记录" },
                        {   title: "SQL-DB", path: "/Notes/数据库/基础和原理/SQL-DB" },
                 ]
             },               {

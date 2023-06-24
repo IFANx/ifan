@@ -2,7 +2,7 @@
 
 https://www.xiaolincoding.com/network/2_http/http_interview.html#http-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5
 
-![image-20230614095309457](/Users/kkxu/NodeProjects/ifan/ifan/images/image-20230614095309457.png)
+![image-20230614095309457](http://8.130.25.175:8080/img/image-20230614095309457.png)
 
 `1xx` 类状态码属于**提示信息**，是协议处理中的一种中间状态，实际用到的比较少。
 

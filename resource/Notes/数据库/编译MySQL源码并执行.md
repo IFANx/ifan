@@ -36,9 +36,9 @@ tar -zxvf mysql
 ```
 1.cd mysql
 2.cmake . -DCMAKE_INSTALL_PREFIX=/usr/local/mysql -DMYSQL_DATADIR=/usr/local/mysql/data -DWITH_BOOST=/usr/local/Cellar/boost/1.76.0_3  （/usr/local/Cellar/boost/1.76.0_3这个目录需要下载一个称为boost的文件，mysql会提供一个下载源，下载这个压缩文件并放置到/usr/local/Cellar/boost/目录下就可以了，我实际执行的语句为：
-cmake . -DCMAKE_INSTALL_PREFIX=/usr/local/mysql -DMYSQL_DATADIR=/usr/local/mysql/data -DWITH_BOOST=/usr/local/Cellar/boost/1.76.0_3 -DFORCE_INSOURCE_BUILD=1 -DDOWNLOAD_BOOST=1 -DWITH_BOOST=/Users/kkxu/Downloads/）
+第四步骤 第二个指令：cmake . -DCMAKE_INSTALL_PREFIX=/usr/local/mysql -DMYSQL_DATADIR=/usr/local/mysql/data -DWITH_BOOST=/Users/kkxu/Downloads/mysqlboost/ -DFORCE_INSOURCE_BUILD=1）
 3.make
-4.make install
+4.make install（实际执行sudo make install）
 ```
 
 其中，`CMAKE_INSTALL_PREFIX`指定MySQL安装目录，`MYSQL_DATADIR`指定MySQL数据存储目录，`WITH_BOOST`指定Boost库的位置。请根据您的实际情况修改这些参数。
@@ -77,3 +77,41 @@ mysql -uroot -p
 其中，`-uroot`选项指定连接MySQL服务器的用户名为root，`-p`选项表示需要输入密码。根据提示输入密码即可。
 
 以上就是在macOS上下载、编译和执行MySQL源代码的详细步骤。请注意，在生产环境中需要采取更多的安全措施，并遵循MySQL的最佳实践。
+
+
+
+8.使用上面的随机密码登录mysql之后，需要输入更新密码。
+
+```
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'root';
+```
+
+
+
+9.新建schema
+
+新建数据表
+
+```sql
+create schema qq;
+create table qq.tt
+(
+    c0 int auto_increment,
+    c1 Text null,
+    constraint tt_pk
+        primary key (c0)
+);
+
+insert into qq.tt values (1,'aa'),(2,'bb');
+```
+
+
+
+10.使用查看插入执行函数名，文件，行是否修改
+
+```
+SET PROFILING=1;
+SELECT * FROM qq.tt where c0=1;
+SHOW PROFILE SOURCE;
+```
+
