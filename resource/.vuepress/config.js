@@ -36,6 +36,13 @@ module.exports = {
                        {   title: "使用Nexus在云服务器搭建Maven私服", path: "/Notes/Maven/使用Nexus在云服务器搭建Maven私服" },
                 ]
             },               {
+                title: 'Redis',
+                sidebarDepth: 3,
+                collapsable: true,
+                children: [
+                       {   title: "缓存一执行问题", path: "/Notes/数据库/Redis/缓存一执行问题" },
+                ]
+            },               {
                 title: 'SpringBoot',
                 sidebarDepth: 3,
                 collapsable: true,
@@ -54,6 +61,7 @@ module.exports = {
                        {   title: "SpringBoot集成文件 - 大文件的上传(异步，分片，断点续传和秒传)", path: "/Notes/JVM/SpringBoot/SpringBoot集成文件 - 大文件的上传(异步，分片，断点续传和秒传)" },
                        {   title: "SpringBoot集成Redis - Redis分布式锁的实现之Jedis(setNXPX+Lua)", path: "/Notes/JVM/SpringBoot/SpringBoot集成Redis - Redis分布式锁的实现之Jedis(setNXPX+Lua)" },
                        {   title: "SpringBoot集成文件-基础的文件上传和下载", path: "/Notes/JVM/SpringBoot/SpringBoot集成文件-基础的文件上传和下载" },
+                       {   title: "Springboot集成WebSocket", path: "/Notes/JVM/SpringBoot/Springboot集成WebSocket" },
                        {   title: "SpringBoot接口 - 如何访问外部接口", path: "/Notes/JVM/SpringBoot/SpringBoot接口 - 如何访问外部接口" },
                        {   title: "SpringBoot接口 - 如何保证接口幂等", path: "/Notes/JVM/SpringBoot/SpringBoot接口 - 如何保证接口幂等" },
                        {   title: "SpringBoot接口 - 如何实现接口限流之单实例", path: "/Notes/JVM/SpringBoot/SpringBoot接口 - 如何实现接口限流之单实例" },
@@ -76,6 +84,13 @@ module.exports = {
                        {   title: "Spring基础 - Spring核心之面向切面编程(AOP)", path: "/Notes/JVM/Spring/Spring基础 - Spring核心之面向切面编程(AOP)" },
                 ]
             },               {
+                title: '数据结构',
+                sidebarDepth: 3,
+                collapsable: true,
+                children: [
+                       {   title: "红黑树", path: "/Notes/数据结构/红黑树" },
+                ]
+            },               {
                 title: '计算机网络',
                 sidebarDepth: 3,
                 collapsable: true,
@@ -85,9 +100,9 @@ module.exports = {
                        {   title: "应用层协议", path: "/Notes/计算机网络/应用层协议" },
                        {   title: "HTTP详解", path: "/Notes/计算机网络/HTTP详解" },
                        {   title: "传输层协议", path: "/Notes/计算机网络/传输层协议" },
+                       {   title: "RPC", path: "/Notes/计算机网络/RPC" },
                        {   title: "链路层和局域网", path: "/Notes/计算机网络/链路层和局域网" },
                        {   title: "网络层协议-数据平面", path: "/Notes/计算机网络/网络层协议-数据平面" },
-                       {   title: "额外", path: "/Notes/计算机网络/额外" },
                        {   title: "网络层协议-控制平面", path: "/Notes/计算机网络/网络层协议-控制平面" },
                 ]
             },               {
