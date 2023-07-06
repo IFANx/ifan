@@ -49,7 +49,10 @@ tar -zxvf mysql
 
 ```
 1.cd /usr/local/mysql
+sudo cp -r /usr/local/mysql/data/ /Users/kkxu/Downloads/backup3/
+sudo rm -rf /usr/local/mysql/data
 2.sudo ./bin/mysqld --initialize --user=mysql --basedir=/usr/local/mysql --datadir=/usr/local/mysql/data （这里可能出现的一个情况是/usr/local/mysql/data里面原本存在数据，比如以前安装过mysql，这个就存在数据，需要删除里面的数据）
+
 ```
 
 其中，`--initialize`选项用于初始化MySQL数据库，`--user`选项指定MySQL运行用户，`--basedir`选项指定MySQL安装目录，`--datadir`选项指定MySQL数据存储目录。
@@ -65,6 +68,21 @@ tar -zxvf mysql
 ```
 sudo ./bin/mysqld_safe --user=mysql &
 ```
+
+或者
+
+```
+##启动MySQL服务
+sudo /usr/local/MySQL/support-files/mysql.server start
+
+##停止MySQL服务
+sudo /usr/local/mysql/support-files/mysql.server stop
+
+##重启MySQL服务
+sudo /usr/local/mysql/support-files/mysql.server restart
+```
+
+
 
 7. 连接到MySQL服务器
 
@@ -113,5 +131,25 @@ insert into qq.tt values (1,'aa'),(2,'bb');
 SET PROFILING=1;
 SELECT * FROM qq.tt where c0=1;
 SHOW PROFILE SOURCE;
+```
+
+
+
+
+
+
+
+
+
+```
+-DCMAKE_BUILD_TYPE=Debug
+-DWITH_BOOST=/Users/kkxu/Downloads/mysqlboost/boost_1_77_0
+-DCMAKE_INSTALL_PREFIX=/Users/kkxuOpenSource/mysql-server/build 
+#编译路径与安装路径需一致
+-DMYSQL_DATADIR=/Users/kkxu/OpenSource/mysql-server/build/data 
+#数据库初始化路径
+-DSYSCONFDIR=/Users/kkxu/OpenSource/mysql-server/build
+-DMYSQL_UNIX_ADDR=/Users/kkxu/OpenSource/mysql-server/build/data/mysql.sock
+
 ```
 

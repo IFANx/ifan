@@ -117,6 +117,12 @@ module.exports = {
                 sidebarDepth: 3,
                 collapsable: true,
                 children: [
+                       {   title: "事务篇", path: "/Notes/数据库/MySQL/事务篇" },
+                       {   title: "锁篇", path: "/Notes/数据库/MySQL/锁篇" },
+                       {   title: "索引篇", path: "/Notes/数据库/MySQL/索引篇" },
+                       {   title: "基础篇", path: "/Notes/数据库/MySQL/基础篇" },
+                       {   title: "内存篇", path: "/Notes/数据库/MySQL/内存篇" },
+                       {   title: "日志篇", path: "/Notes/数据库/MySQL/日志篇" },
                 ]
             },               {
                 title: '操作系统',
@@ -144,6 +150,14 @@ module.exports = {
                        {   title: "ReentrantLock", path: "/Notes/JVM/JUC/ReentrantLock" },
                        {   title: "AQS详解", path: "/Notes/JVM/JUC/AQS详解" },
                        {   title: "并发编程", path: "/Notes/JVM/JUC/并发编程" },
+                ]
+            },               {
+                title: 'Summary',
+                sidebarDepth: 3,
+                collapsable: true,
+                children: [
+                       {   title: "summary1", path: "/Notes/Summary/summary1" },
+                       {   title: "设计模式", path: "/Notes/Summary/设计模式" },
                 ]
             },               {
                 title: 'Java IO',
