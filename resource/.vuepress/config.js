@@ -40,7 +40,13 @@ module.exports = {
                 sidebarDepth: 3,
                 collapsable: true,
                 children: [
+                       {   title: "持久化篇", path: "/Notes/数据库/Redis/持久化篇" },
                        {   title: "缓存一执行问题", path: "/Notes/数据库/Redis/缓存一执行问题" },
+                       {   title: "数据类型篇", path: "/Notes/数据库/Redis/数据类型篇" },
+                       {   title: "缓存篇", path: "/Notes/数据库/Redis/缓存篇" },
+                       {   title: "高可用篇", path: "/Notes/数据库/Redis/高可用篇" },
+                       {   title: "面试篇", path: "/Notes/数据库/Redis/面试篇" },
+                       {   title: "功能篇", path: "/Notes/数据库/Redis/功能篇" },
                 ]
             },               {
                 title: 'SpringBoot',
@@ -88,6 +94,8 @@ module.exports = {
                 sidebarDepth: 3,
                 collapsable: true,
                 children: [
+                       {   title: "LSM-tree", path: "/Notes/数据结构/LSM-tree" },
+                       {   title: "跳表", path: "/Notes/数据结构/跳表" },
                        {   title: "红黑树", path: "/Notes/数据结构/红黑树" },
                 ]
             },               {
