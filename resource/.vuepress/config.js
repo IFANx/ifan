@@ -22,6 +22,7 @@ module.exports = {
                        {   title: "java的反射机制", path: "/Notes/JVM/java的反射机制" },
                        {   title: "Java集合", path: "/Notes/JVM/Java集合" },
                        {   title: "Java常用机制-SPI机制", path: "/Notes/JVM/Java常用机制-SPI机制" },
+                       {   title: "ThreadLocal", path: "/Notes/JVM/ThreadLocal" },
                        {   title: "JVM相关", path: "/Notes/JVM/JVM相关" },
                        {   title: "Java基础", path: "/Notes/JVM/Java基础" },
                        {   title: "JUC", path: "/Notes/JVM/JUC" },
@@ -36,13 +37,23 @@ module.exports = {
                        {   title: "使用Nexus在云服务器搭建Maven私服", path: "/Notes/Maven/使用Nexus在云服务器搭建Maven私服" },
                 ]
             },               {
+                title: '软件测试相关',
+                sidebarDepth: 3,
+                collapsable: true,
+                children: [
+                       {   title: "软件测试", path: "/Notes/软件测试相关/软件测试" },
+                       {   title: "测试开发", path: "/Notes/软件测试相关/测试开发" },
+                ]
+            },               {
                 title: 'Redis',
                 sidebarDepth: 3,
                 collapsable: true,
                 children: [
                        {   title: "持久化篇", path: "/Notes/数据库/Redis/持久化篇" },
                        {   title: "缓存一执行问题", path: "/Notes/数据库/Redis/缓存一执行问题" },
+                       {   title: "集群-分片技术", path: "/Notes/数据库/Redis/集群-分片技术" },
                        {   title: "数据类型篇", path: "/Notes/数据库/Redis/数据类型篇" },
+                       {   title: "Redis面试题", path: "/Notes/数据库/Redis/Redis面试题" },
                        {   title: "缓存篇", path: "/Notes/数据库/Redis/缓存篇" },
                        {   title: "高可用篇", path: "/Notes/数据库/Redis/高可用篇" },
                        {   title: "面试篇", path: "/Notes/数据库/Redis/面试篇" },
@@ -82,7 +93,11 @@ module.exports = {
                 sidebarDepth: 3,
                 collapsable: true,
                 children: [
+                       {   title: "IOC详解", path: "/Notes/JVM/Spring/IOC详解" },
                        {   title: "Spring框架知识体系", path: "/Notes/JVM/Spring/Spring框架知识体系" },
+                       {   title: "AOP详解", path: "/Notes/JVM/Spring/AOP详解" },
+                       {   title: "AOP源码", path: "/Notes/JVM/Spring/AOP源码" },
+                       {   title: "BeanFactory", path: "/Notes/JVM/Spring/BeanFactory" },
                        {   title: "Spring进阶-IOC体系结构设计", path: "/Notes/JVM/Spring/Spring进阶-IOC体系结构设计" },
                        {   title: "Spring进阶-Spring AOP实现原理之AOP切面实现", path: "/Notes/JVM/Spring/Spring进阶-Spring AOP实现原理之AOP切面实现" },
                        {   title: "Spring基础 - SpringMVC请求流程和案例", path: "/Notes/JVM/Spring/Spring基础 - SpringMVC请求流程和案例" },
@@ -109,6 +124,7 @@ module.exports = {
                        {   title: "HTTP详解", path: "/Notes/计算机网络/HTTP详解" },
                        {   title: "传输层协议", path: "/Notes/计算机网络/传输层协议" },
                        {   title: "RPC", path: "/Notes/计算机网络/RPC" },
+                       {   title: "Session和Cookie", path: "/Notes/计算机网络/Session和Cookie" },
                        {   title: "链路层和局域网", path: "/Notes/计算机网络/链路层和局域网" },
                        {   title: "网络层协议-数据平面", path: "/Notes/计算机网络/网络层协议-数据平面" },
                        {   title: "网络层协议-控制平面", path: "/Notes/计算机网络/网络层协议-控制平面" },
@@ -129,6 +145,7 @@ module.exports = {
                        {   title: "锁篇", path: "/Notes/数据库/MySQL/锁篇" },
                        {   title: "索引篇", path: "/Notes/数据库/MySQL/索引篇" },
                        {   title: "基础篇", path: "/Notes/数据库/MySQL/基础篇" },
+                       {   title: "分库分表", path: "/Notes/数据库/MySQL/分库分表" },
                        {   title: "内存篇", path: "/Notes/数据库/MySQL/内存篇" },
                        {   title: "日志篇", path: "/Notes/数据库/MySQL/日志篇" },
                 ]
@@ -137,6 +154,7 @@ module.exports = {
                 sidebarDepth: 3,
                 collapsable: true,
                 children: [
+                       {   title: "OS", path: "/Notes/操作系统/OS" },
                        {   title: "四、文件系统", path: "/Notes/操作系统/四、文件系统" },
                        {   title: "一、进程与线程", path: "/Notes/操作系统/一、进程与线程" },
                        {   title: "引论", path: "/Notes/操作系统/引论" },
