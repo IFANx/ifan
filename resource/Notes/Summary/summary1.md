@@ -428,3 +428,512 @@ FixedThreadPool是一个典型且优秀的线程池，它具有线程池提高�
 ### 17.对象的生命周期
 
 在JVM运行空间中，对象的整个生命周期大致可以分为7个阶段：**创建阶段（Creation）、应用阶段（Using）、不可视阶段（Invisible）、不可到达阶段（Unreachable）、可收集阶段（Collected）、终结阶段（Finalized）与释放阶段（Free）**。
+
+
+
+### 18.线程池中后备队列满了的任务拒绝策略
+
+关于线程池的任务拒绝策略，我们要理解并记住，有如下的四种：
+
+1、直接丢弃（DiscardPolicy）
+
+2、丢弃队列中最老的任务(DiscardOldestPolicy)。
+
+3、抛异常
+
+4、将任务分给调用线程来执行。
+
+
+
+### 19.redis如何实现分布式锁
+
+我们在系统中修改已有数据时，需要先读取，然后进行修改保存，此时很容易遇到并发问题。由于修改和保存不是原子操作，在并发场景下，部分对数据的操作可能会丢失。在单服务器系统我们常用本地锁来避免并发带来的问题，然而，当服务采用集群方式部署时，本地锁无法在多个服务器之间生效，这时候保证数据的一致性就需要分布式锁来实现。
+
+Redis 锁主要利用 Redis 的 setnx 命令。
+
+- 加锁命令：SETNX key value，当键不存在时，对键进行设置操作并返回成功，否则返回失败。KEY 是锁的唯一标识，一般按业务来决定命名。
+- 解锁命令：DEL key，通过删除键值对释放锁，以便其他线程可以通过 SETNX 命令来获取锁。
+- 锁超时：EXPIRE key timeout, 设置 key 的超时时间，以保证即使锁没有被显式释放，锁也可以在一定时间后自动释放，避免资源被永远锁住。
+
+
+
+### 20.@Autowired和@Resource区别
+
+https://juejin.cn/post/7022507865701089317
+
+共同点：@Resource和@Autowired都可以作为注入属性的修饰，在接口仅有单一实现类时，两个注解的修饰效果相同，可以互相替换，不影响使用。
+
+不同点：
+
+1、@Resource是JDK原生的注解，@Autowired是Spring2.5 引入的注解
+
+2、@Resource有两个属性name和type。Spring将@Resource注解的name属性解析为bean的名字，而type属性则解析为bean的类型。所以如果使用name属性，则使用byName的自动注入策略，而使用type属性时则使用byType自动注入策略。如果既不指定name也不指定type属性，这时将通过反射机制使用byName自动注入策略。
+
+@Autowired只根据type进行注入，不会去匹配name。如果涉及到type无法辨别注入对象时，那需要依赖@Qualifier或@Primary注解一起来修饰。
+
+总结
+
+@Autowired功能虽说非常强大，但是也有些不足之处。比如它跟Spring强耦合了，如果换成了其他框架，功能就会失效。而@Resource是JSR-250提供的，它是Java标准，绝大部分框架都支持。
+
+除此之外，有些场景使用@Autowired无法满足的要求，改成@Resource却能解决问题。
+
+1、@Autowired默认按byType自动装配，而@Resource默认byName自动装配。
+
+2、@Autowired只包含一个参数：required，表示是否开启自动准入，默认是true。而@Resource包含七个参数，其中最重要的两个参数是：name 和 type。
+
+3、@Autowired如果要使用byName，需要使用@Qualifier一起配合。而@Resource如果指定了name，则用byName自动装配，如果指定了type，则用byType自动装配。
+
+4、@Autowired能够用在：构造器、方法、参数、成员变量和注解上，而@Resource能用在：类、成员变量和方法上。
+
+5、@Autowired是Spring定义的注解，而@Resource是JSR-250定义的注解。
+
+6、二者装配顺序不同
+
+**@Autowired**
+
+![img](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c8fabb988e2d4fcb87e592cd8846be68~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp)
+
+**@Resource**
+
+![img](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/e987c1684435481bbaf3b270dfdbaf59~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp)
+
+
+
+### 21.Spring 注解
+
+@Repository和@Controller、@Service、@[Component](https://so.csdn.net/so/search?q=Component&spm=1001.2101.3001.7020)的作用差不多，都是把对象交给spring管理。@Repository用在持久层的接口上，这个注解是将接口的一个实现类交给spring管理。
+
+为什么有时候我们不用@Repository来注解接口,我们照样可以注入到这个接口的实现类呢?
+1、spring配置文件中配置了MapperScannerConfigurer这个bean，它会扫描持久层接口创建实现类并交给spring管理。
+
+2、接口上使用了@Mapper注解或者springboot中主类上使用了@MapperScan注解，和MapperScannerConfigurer作用一样。
+
+注：不使用@Repository注解，idea会报警告，提示找不到这个bean，直接忽略即可。
+
+@Repository的作用：
+这是因为该注解的作用不只是将类识别为Bean，同时它还能将所标注的类中抛出的数据访问异常封装为 Spring 的数据访问异常类型。 Spring本身提供了一个丰富的并且是与具体的数据访问技术无关的数据访问异常结构，用于封装不同的持久层框架抛出的异常，使得异常独立于底层的框架。
+
+
+
+### 22.Spring注解分类
+
+1、Spring注解分类
+从广义上Spring注解可以分为两类：
+
+一类注解是用于注册Bean
+
+假如IOC容器就是一间空屋子，首先这间空屋子啥都没有，我们要吃大餐，我们就要从外部搬运食材和餐具进来。这里把某一样食材或者某一样餐具搬进空屋子的操作就相当于每个注册Bean的注解作用类似。注册Bean的注解作用就是往IOC容器中放（注册）东西！
+用于注册Bean的注解： 比如@Component , @Repository , @ Controller , @Service , @Configration这些注解就是用于注册Bean，放进IOC容器中，一来交给spring管理方便解耦，二来还可以进行二次使用，啥是二次使用呢？这里的二次使用可以理解为：在你开始从外部搬运食材和餐具进空屋子的时候，一次性搬运了猪肉、羊肉、铁勺、筷子四样东西，这个时候你要开始吃大餐，首先你吃东西的时候肯定要用筷子或者铁勺，别说你手抓，只要你需要，你就会去找，这个时候发现你已经把筷子或者铁勺放进了屋子，你就不用再去外部拿筷子进屋子了，意思就是IOC容器中已经存在，就可以只要拿去用，而不必再去注册！而拿屋子里已有的东西的操作就是下面要讲的用于使用Bean的注解！
+
+一类注解是用于使用Bean
+
+用于使用Bean的注解：比如@Autowired , @Resource注解，这些注解就是把屋子里的东西自己拿来用，如果你要拿，前提一定是屋子（IOC）里有的，不然就会报错，比如你要做一道牛肉拼盘需要五头牛做原材料才行，你现在锅里只有四头牛，这个时候你知道，自己往屋子里搬过五头牛，这个时候就直接把屋子里的那头牛直接放进锅里，完成牛肉拼盘的组装。是的这些注解就是需要啥想要啥，只要容器中有就往容器中拿！而这些注解又有各自的区别，比如@Autowired用在筷子上，这筷子你可能只想用木质的，或许只想用铁质的，@Autowired作用在什么属性的筷子就那什么筷子，而@Resource如果用在安格斯牛肉上面，就指定要名字就是安格斯牛肉的牛肉。
+Spring的@Bean注解用于告诉方法，产生一个Bean对象，然后这个Bean对象交给Spring管理。 产生这个Bean对象的方法Spring只会调用一次，随后这个Spring将会将这个Bean对象放在自己的IOC容器中。@Bean明确地指示了一种方法，什么方法呢？产生一个bean的方法，并且交给Spring容器管理；从这我们就明白了为啥@Bean是放在方法的注释上了，因为它很明确地告诉被注释的方法，你给我产生一个Bean，然后交给Spring容器，剩下的你就别管了。记住，@Bean就放在方法上，就是让方法去产生一个Bean，然后交给Spring容器。
+
+如下就能让accountDao方法产生一个AccountDao 对象，然后这个AccountDao 对象交给Spring管理
+
+```java
+ class A{
+        @Bean
+        public AccountDao accountDao(){
+            return new AccountDao();
+        }
+    }
+```
+
+实际上，@Bean注解和xml配置中的bean标签的作用是一样的。
+
+为什么要有@Bean注解？
+不知道大家有没有想过，用于注册Bean的注解的有那么多个，为何还要出现@Bean注解？
+
+**原因很简单：类似@Component , @Repository , @ Controller , @Service 这些注册Bean的注解存在局限性，只能局限作用于自己编写的类，如果是一个jar包第三方库要加入IOC容器的话，这些注解就手无缚鸡之力了，是的，@Bean注解就可以做到这一点！当然除了@Bean注解能做到还有@Import也能把第三方库中的类实例交给spring管理，而且@Import更加方便快捷，只是@Import注解并不在本篇范围内，这里就不再概述。**
+
+使用@Bean注解的另一个好处就是能够动态获取一个Bean对象，能够根据环境不同得到不同的Bean对象。
+
+
+
+### 23.@Repository和@Controller、@Service、@Component
+
+@Component
+
+@Component注解表明一个类会作为组件类，并告知Spring要为这个类创建bean。
+
+@Component有几个衍生注解，按照三处架构分层
+
+- dao[ @Repository ]
+- service[ @service ]
+- controller[ @Controller]
+
+因此，当你的一个类被`@Component`所注解，那么就意味着同样可以用`@Repository`, `@Service`, `@Controller`来替代它，同时这些注解会具备有更多的功能，而且功能各异。
+
+@Controller控制层
+
+用于标记在一个类上，使用它标记的类就是一个SpringMVC Controller对象，分发处理器会扫描使用该注解的类的方法，并检测该方法是否使用了@RequestMapping注解。@Controller只是定义了一个控制器类，而使用@RequestMapping注解的方法才是处理请求的处理器。
+
+@RequestMapping
+
+它可以注解类也可以注解方法，注解类时标注请求的路径，标注方法时表示将特定的URL映射到指定的方法。
+
+@Service业务逻辑层
+
+应用于业务层，用于标注业务层组件,表示定义一个bean，自动根据bean的类名实例化一个首写字母为小写的bean。
+
+@Repository持久层
+
+用于标注数据访问组件，即DAO组件，表示将Dao类声明为bean
+
+@Repository 只能标注在 DAO 类，因为该注解的作用不只是将类识别为Bean，同时它还能将所标注的类中抛出的数据访问异常封装为 Spring 的数据访问异常类型。
+
+**总结**
+
+`@Component`, `@Service`, `@Controller`, `@Repository`是spring注解，注解后可以被spring框架所扫描并注入到spring容器来进行管理。虽然你可以全部使用`@Component`注解，但使用其他注解，则你的类更适合于通过工具进行处理或与其他方面相关联。
+
+- `@Component`是通用注解，其他三个注解是这个注解的衍生注解，并且具有了特定的功能。
+- `@Controller`层是spring-mvc的注解，用于标注控制层组件，并查看是否处理请求转发，重定向。
+- `@Service`层是业务逻辑层注解，这个注解只是标注该类处于业务逻辑层。
+- `@Repository`注解在持久层中，标注 DAO 类，具有将数据库操作抛出的数据访问异常自动转换(封装)为spring的持久层异常的功能。
+
+用这些注解对应用进行分层之后，就能将请求处理，义务逻辑处理，数据库操作处理分离出来，为代码解耦，也方便了以后项目的维护和开发。
+
+
+
+### 24.Spring中@Component和@Bean的区别
+
+1、@Component注解表明一个类会作为组件类，并告知Spring要为这个类创建bean。
+
+2、@Bean注解告诉Spring这个方法将会返回一个对象，这个对象要注册为Spring应用上下文中的bean。通常方法体中包含了最终产生bean实例的逻辑。
+
+两者的目的是一样的，都是注册bean到Spring容器中。
+
+区别：
+
+@Component（@Controller、@Service、@Repository）通常是通过类路径扫描来自动侦测以及自动装配到Spring容器中。
+
+而@Bean注解通常是我们在标有该注解的方法中定义产生这个bean的逻辑。
+
+**@Component 作用于类，@Bean作用于方法。**
+
+总结：
+
+**@Component和@Bean都是用来注册Bean并装配到Spring容器中，但是Bean比Component的自定义性更强。可以实现一些Component实现不了的自定义加载类。**
+
+@Bean示例：
+
+```java
+@Configuration
+public class AppConfig {
+    @Bean
+    public TransferService transferService() {
+        return new TransferServiceImpl();
+    }
+}
+```
+
+
+
+### 25.Spring.factories(SpringBoot如何自动注入(装配)Maven引入的第三方库jar)
+
+1. 理解自动装配的核心原理
+
+2. 能手写一个EnableAutoConfiguration注解
+
+3. 理解SPI机制的原理
+
+   **第1章 集成Redis**
+   1.引入依赖包
+
+```markup
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-data-redis</artifactId>
+</dependency>
+```
+
+2.配置参数
+
+```markup
+spring.redis.host=192.168.8.74
+spring.redis.password=123456
+spring.redis.database=0
+```
+
+3.controller
+
+```java
+package com.example.springbootvipjtdemo.redisdemo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/redis")
+public class RedisController {
+    @Autowired
+    private RedisTemplate redisTemplate;
+    @GetMapping("/save")
+    public String save(@RequestParam String key,@RequestParam String value){
+        redisTemplate.opsForValue().set(key,value);
+        return "添加成功";
+    }
+    @GetMapping("/get")
+    public String get(@RequestParam String key){
+        String value = (String)redisTemplate.opsForValue().get(key);
+        return value;
+    }
+}
+```
+
+通过上面的案例，我们就能看出来，RedisTemplate这个类的bean对象，我们并没有通过XML的方式也没有通过注解的方式注入到IoC容器中去，但是我们就是可以通过@Autowired注解自动从容器里面拿到相应的Bean对象，再去进行属性注入。
+
+最关键的要属@Import(AutoConfigurationImportSelector.class)，借助AutoConfigurationImportSelector，@EnableAutoConfiguration可以帮助SpringBoot应用将所有符合条件(**spring.factories**)的bean定义（如Java Config@Configuration配置）都加载到当前SpringBoot创建并使用的IoC容器。
+
+![image-20230717152629496](/Users/kkxu/NodeProjects/ifan/ifan/images/image-20230717152629496.png)
+
+**SpringFactoriesLoader**
+其实SpringFactoriesLoader的底层原理就是借鉴于JDK的SPI机制，所以，在将SpringFactoriesLoader之前，我们现在发散一下SPI机制。
+
+
+
+**SPI**
+SPI ，全称为 Service Provider Interface，是一种服务发现机制。它通过在ClassPath路径下的META-INF/services文件夹查找文件，自动加载文件里所定义的类。这一机制为很多框架扩展提供了可能，比如在Dubbo、JDBC中都使用到了SPI机制。我们先通过一个很简单的例子来看下它是怎么用的。
+
+
+
+
+
+### **26.SpringBoot的自动装配原理**
+
+1. SpringBootApplication注解是入口
+
+   - @SpringBootConfiguration：继承了Configuration，表示当前是注解类
+
+   - @EnableAutoConfiguration： 开启springboot的注解功能，springboot的四大神器之一，其借助@import的帮助
+
+   - @ComponentScan(excludeFilters = { // 扫描路径设置（具体使用待确认）
+     ComponentScan的功能其实就是自动扫描并加载符合条件的组件（比如@Component和@Repository等）或者bean定义；并将这些bean定义加载到IoC容器中.
+
+   - 我们可以通过**basePackages**等属性来细粒度的定制@ComponentScan自动扫描的范围，如果不指定，则默认Spring框架实现会从声明@ComponentScan所在类的package进行扫描。
+
+     注：所以SpringBoot的启动类最好是放在root package下，因为默认不指定basePackages
+
+**SpringFactoriesLoader**
+
+借助于Spring框架原有的一个工具类：SpringFactoriesLoader的支持，@EnableAutoConfiguration可以智能的自动配置功效才得以大功告成！
+
+SpringFactoriesLoader属于Spring框架私有的一种扩展方案，其主要功能就是从指定的配置文件META-INF/spring.factories加载配置,加载工厂类。
+
+SpringFactoriesLoader为Spring工厂加载器，该对象提供了loadFactoryNames方法，入参为factoryClass和classLoader即需要传入工厂类名称和对应的类加载器，方法会根据指定的classLoader，加载该类加器搜索路径下的指定文件，即spring.factories文件；
+
+传入的工厂类为接口，而文件中对应的类则是接口的实现类，或最终作为实现类。
+
+```markup
+public abstract class SpringFactoriesLoader {
+//...
+　　public static <T> List<T> loadFactories(Class<T> factoryClass, ClassLoader classLoader) {
+　　　　...
+　　}
+　　public static List<String> loadFactoryNames(Class<?> factoryClass, ClassLoader classLoader) {
+　　　　....
+　　}
+}1.2.3.4.5.6.7.8.9.
+```
+
+复制
+
+配合@EnableAutoConfiguration使用的话，它更多是提供一种配置查找的功能支持，即根据@EnableAutoConfiguration的完整类名
+org.springframework.boot.autoconfigure.EnableAutoConfiguration作为查找的Key,获取对应的一组@Configuration类!(https://dl-harmonyos.51cto.com/images/202207/036d3b788cb7864aaf5532dc0458db47c4c517.jpg)上图就是从SpringBoot的autoconfigure依赖包中的META-INF/spring.factories配置文件中摘录的一段内容，可以很好地说明问题。
+
+（重点）所以，@EnableAutoConfiguration自动配置的魔法其实就变成了：
+
+从classpath中搜寻所有的META-INF/spring.factories配置文件，并将其中
+org.springframework.boot.autoconfigure.EnableAutoConfiguration对应的配置项通过反射（Java Refletion）实例化为对应的标注了@Configuration的JavaConfig形式的IoC容器配置类，然后汇总为一个并加载到IoC容器。
+
+![image-20230717153236810](/Users/kkxu/NodeProjects/ifan/ifan/images/image-20230717153236810.png)
+
+
+
+### 27.单点登录
+
+单点登录（Single Sign On），简称为 SSO，是目前比较流行的企业业务整合的解决方案之一
+
+SSO的定义是在多个应用系统中，用户只需要登录一次就可以访问所有相互信任的应用系统
+
+SSO 一般都需要一个独立的认证中心（passport），子系统的登录均得通过`passport`，子系统本身将不参与登录操作
+
+当一个系统成功登录以后，`passport`将会颁发一个令牌给各个子系统，子系统可以拿着令牌会获取各自的受保护资源，为了减少频繁认证，各个子系统在被`passport`授权以后，会建立一个局部会话，在一定时间内可以无需再次向`passport`发起认证
+
+![](https://camo.githubusercontent.com/e8a925d41d93b9bc35b77a9ce5a09740e42da226c3ca283e48fa127bf432fd80/68747470733a2f2f7374617469632e7675652d6a732e636f6d2f32623962306537302d386334622d313165622d383566362d3666616337376330633962332e706e67)
+
+上图有四个系统，分别是`Application1`、`Application2`、`Application3`、和`SSO`，当`Application1`、`Application2`、`Application3`需要登录时，将跳到`SSO`系统，`SSO`系统完成登录，其他的应用系统也就随之登录了
+
+
+
+**如何实现单点登录：**
+
+方式1:
+
+我们可以部署一个认证中心，用于专门处理登录请求的独立的 `Web `服务
+
+用户统一在认证中心进行登录，登录成功后，认证中心记录用户的登录状态，并将 `token` 写入 `Cookie`（注意这个 `Cookie `是认证中心的，应用系统是访问不到的）
+
+应用系统检查当前请求有没有 `Token`，如果没有，说明用户在当前系统中尚未登录，那么就将页面跳转至认证中心
+
+由于这个操作会将认证中心的 `Cookie` 自动带过去，因此，认证中心能够根据 `Cookie` 知道用户是否已经登录过了
+
+如果认证中心发现用户尚未登录，则返回登录页面，等待用户登录
+
+如果发现用户已经登录过了，就不会让用户再次登录了，而是会跳转回目标 `URL `，并在跳转前生成一个 `Token`，拼接在目标` URL` 的后面，回传给目标应用系统
+
+应用系统拿到 `Token `之后，还需要向认证中心确认下 `Token` 的合法性，防止用户伪造。确认无误后，应用系统记录用户的登录状态，并将 `Token `写入` Cookie`，然后给本次访问放行。（注意这个 `Cookie` 是当前应用系统的）当用户再次访问当前应用系统时，就会自动带上这个 `Token`，应用系统验证 Token 发现用户已登录，于是就不会有认证中心什么事了
+
+此种实现方式相对复杂，支持跨域，扩展性好，是单点登录的标准做法
+
+方式2:
+
+可以选择将 `Session ID` （或 `Token` ）保存到浏览器的 `LocalStorage` 中，让前端在每次向后端发送请求时，主动将`LocalStorage`的数据传递给服务端
+
+这些都是由前端来控制的，后端需要做的仅仅是在用户登录成功后，将 `Session ID `（或 `Token `）放在响应体中传递给前端
+
+单点登录完全可以在前端实现。前端拿到 `Session ID `（或 `Token` ）后，除了将它写入自己的 `LocalStorage` 中之外，还可以通过特殊手段将它写入多个其他域下的 `LocalStorage` 中
+
+
+
+### 28.零拷贝
+
+https://juejin.cn/post/6995519558475841550
+
+零拷贝（Zero-Copy）是一种 `I/O` 操作优化技术，可以快速高效地将数据从文件系统移动到网络接口，而不需要将其从内核空间复制到用户空间。其在 `FTP` 或者 `HTTP` 等协议中可以显著地提升性能。但是需要注意的是，并不是所有的操作系统都支持这一特性，目前只有在使用 `NIO` 和 `Epoll` 传输时才可使用该特性。
+
+需要注意，它不能用于实现了数据加密或者压缩的文件系统上，只有传输文件的原始内容。这类原始内容也包括加密了的文件内容。
+
+首先，期间共**发生了 4 次用户态与内核态的上下文切换**，因为发生了两次系统调用，一次是 `read()` ，一次是 `write()`，每次系统调用都得先从用户态切换到内核态，等内核完成任务后，再从内核态切换回用户态。
+
+上下文切换到成本并不小，一次切换需要耗时几十纳秒到几微秒，虽然时间看上去很短，但是在高并发的场景下，这类时间容易被累积和放大，从而影响系统的性能。
+
+其次，还**发生了 4 次数据拷贝**，其中两次是 DMA 的拷贝，另外两次则是通过 CPU 拷贝的，下面说一下这个过程：
+
+- `第一次拷贝`，把磁盘上的数据拷贝到操作系统内核的缓冲区里，这个拷贝的过程是通过 DMA 搬运的。
+- `第二次拷贝`，把内核缓冲区的数据拷贝到用户的缓冲区里，于是我们应用程序就可以使用这部分数据了，这个拷贝到过程是由 CPU 完成的。
+- `第三次拷贝`，把刚才拷贝到用户的缓冲区里的数据，再拷贝到内核的 socket 的缓冲区里，这个过程依然还是由 CPU 搬运的。
+- `第四次拷贝`，把内核的 socket 缓冲区里的数据，拷贝到网卡的缓冲区里，这个过程又是由 DMA 搬运的。
+
+这种简单又传统的文件传输方式，存在冗余的上文切换和数据拷贝，在高并发系统里是非常糟糕的，多了很多不必要的开销，会严重影响系统性能。
+
+无论是传统的 I/O 方式，还是引入了零拷贝之后，2 次 `DMA copy`是都少不了的。因为两次 DMA 都是依赖硬件完成的。所以，所谓的零拷贝，都是为了减少 CPU copy 及减少了上下文的切换。
+
+三个层次的文件拷贝优化：
+
+零拷贝技术原理
+
+零拷贝主要是用来解决操作系统在处理 I/O 操作时，频繁复制数据的问题。关于零拷贝主要技术有 `mmap+write`、`sendfile`和`splice`等几种方式。
+
+虚拟内存
+
+在了解零拷贝技术之前，先了解虚拟内存的概念。
+
+所有现代操作系统都使用虚拟内存，使用虚拟地址取代物理地址，主要有以下几点好处：
+
+- 多个虚拟内存可以指向同一个物理地址。
+- 虚拟内存空间可以远远大于物理内存空间。
+
+利用上述的第一条特性可以优化，可以把内核空间和用户空间的虚拟地址映射到同一个物理地址，这样在 I/O 操作时就不需要来回复制了。
+
+如下图展示了虚拟内存的原理。
+
+![image-20210812181924274](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f93635b183ef49828843c0f50518449a~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp)
+
+mmap/write 方式
+
+使用`mmap/write`方式替换原来的传统I/O方式，就是利用了虚拟内存的特性。下图展示了`mmap/write`原理：
+
+![image-20210812201839908](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d3747aca11884a1a85708c0163c79a99~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp)
+
+整个流程的核心区别就是，把数据读取到内核缓冲区后，应用程序进行写入操作时，直接把内核的`Read Buffer`的数据复制到`Socket Buffer`以便写入，这次内核之间的复制也是需要CPU的参与的。
+
+上述流程就是少了一个 CPU COPY，提升了 I/O 的速度。不过发现上下文的切换还是4次并没有减少，这是因为还是要应用程序发起`write`操作。
+
+> 那能不能减少上下文切换呢?这就需要`sendfile`方式来进一步优化了。
+
+sendfile 方式
+
+从 Linux 2.1 版本开始，Linux 引入了 `sendfile`来简化操作。`sendfile`方式可以替换上面的`mmap/write`方式来进一步优化。
+
+`sendfile`将以下操作：
+
+```java
+java
+复制代码  mmap();
+  write();
+替换为：
+java
+复制代码 sendfile();
+```
+
+这样就减少了上下文切换，因为少了一个应用程序发起`write`操作，直接发起`sendfile`操作。
+
+下图展示了`sendfile`原理：
+
+![image-20210812201905046](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d221a3a90a754ca9842f6324455638ea~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp)
+
+`sendfile`方式只有三次数据复制（其中只有一次 CPU COPY）以及2次上下文切换。
+
+> 那能不能把 CPU COPY 减少到没有呢？这样需要带有 `scatter/gather`的`sendfile`方式了。
+
+带有 scatter/gather 的 sendfile方式
+
+Linux 2.4 内核进行了优化，提供了带有 `scatter/gather` 的 sendfile 操作，这个操作可以把最后一次 `CPU COPY` 去除。其原理就是在内核空间 Read BUffer 和 Socket Buffer 不做数据复制，而是将 Read Buffer 的内存地址、偏移量记录到相应的 Socket Buffer 中，这样就不需要复制。其本质和虚拟内存的解决方法思路一致，就是内存地址的记录。
+
+下图展示了scatter/gather 的 sendfile 的原理：
+
+![image-20210812201922193](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/133430c1aedc4e22a6e340efc29e4239~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp)
+
+scatter/gather 的 sendfile 只有两次数据复制（都是 DMA COPY）及 2 次上下文切换。CUP COPY 已经完全没有。不过这一种收集复制功能是需要硬件及驱动程序支持的。
+
+splice 方式
+
+`splice` 调用和`sendfile` 非常相似，用户应用程序必须拥有两个已经打开的文件描述符，一个表示输入设备，一个表示输出设备。与`sendfile`不同的是，`splice`允许任意两个文件互相连接，而并不只是文件与`socket`进行数据传输。对于从一个文件描述符发送数据到`socket`这种特例来说，一直都是使用`sendfile`系统调用，而`splice`一直以来就只是一种机制，它并不仅限于`sendfile`的功能。也就是说 sendfile 是 splice 的一个子集。
+
+在 Linux 2.6.17 版本引入了 splice，而在 Linux 2.6.23 版本中， sendfile 机制的实现已经没有了，但是其 API 及相应的功能还在，只不过 API 及相应的功能是利用了 splice 机制来实现的。
+
+和 sendfile 不同的是，splice 不需要硬件支持。
+
+总结
+
+无论是传统的 I/O 方式，还是引入了零拷贝之后，2 次 `DMA copy`是都少不了的。因为两次 DMA 都是依赖硬件完成的。所以，所谓的零拷贝，都是为了减少 CPU copy 及减少了上下文的切换。
+
+
+
+
+
+### 29.TCP建立连接为什么是三次握手，而不是两次或四次？
+
+- 三次握手才可以阻止重复历史连接的初始化（主要原因）
+- 三次握手才可以同步双方的初始序列号
+- 三次握手才可以避免资源浪费
+
+
+
+### 30.TCP四次挥手为什么有时会是三次挥手？
+
+当被动关闭方在 TCP 挥手过程中，如果「没有数据要发送」，同时「没有开启 TCP_QUICKACK（默认情况就是没有开启，没有开启 TCP_QUICKACK，等于就是在使用 TCP 延迟确认机制）」，那么第二和第三次挥手就会合并传输，这样就出现了三次挥手。
+
+**所以，出现三次挥手现象，是因为 TCP 延迟确认机制导致的。**（ACK不携带数据，浪费网络资源，TCP往往会延迟一段时间放松ACK，如果再延迟这短时间内，发送ACK这侧的服务器或者客户端有数据要发送，就可以一起发送了，节约了网络资源。）
+
+
+
+
+
+### 31.如何对app做安全测试
+
+任意用户登录
+
+日志安全
+
+值符绕过
+
+信息泄漏
+
+权限问题

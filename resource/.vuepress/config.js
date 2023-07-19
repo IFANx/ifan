@@ -41,6 +41,7 @@ module.exports = {
                 sidebarDepth: 3,
                 collapsable: true,
                 children: [
+                       {   title: "测试知识", path: "/Notes/软件测试相关/测试知识" },
                        {   title: "软件测试", path: "/Notes/软件测试相关/软件测试" },
                        {   title: "测试开发", path: "/Notes/软件测试相关/测试开发" },
                 ]
