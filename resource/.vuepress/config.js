@@ -183,6 +183,7 @@ module.exports = {
                 sidebarDepth: 3,
                 collapsable: true,
                 children: [
+                       {   title: "summary2", path: "/Notes/Summary/summary2" },
                        {   title: "summary1", path: "/Notes/Summary/summary1" },
                        {   title: "设计模式", path: "/Notes/Summary/设计模式" },
                 ]
