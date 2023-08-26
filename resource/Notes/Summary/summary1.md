@@ -2,7 +2,7 @@
 
 ### **1.高并发秒杀超卖问题**
 
-1.数据库层面的互斥锁，2.应用层面的分布式锁，3.redis的单线程特性+内存运行（预减库存，但存在缓存数据一致性问题）
+1.数据库层面的互斥锁，2.应用层面的分布式锁，3.redis的单线程特性+内存运行（预减库存）
 
 ### **2.测试-淘宝购物车**
 
@@ -144,7 +144,7 @@ SPI（服务提供接口），定义标准，厂商实现接口，提供Jar包�
 
 https://pdai.tech/md/java/thread/java-thread-x-threadlocal.html
 
-
+ThrealLocal在线程池中，由于部分线程可能永远不会被销毁，在这种线程中的ThrealLocal变量可能会一直被保留，造成内存泄漏。（相当于实际这个线程已经在执行其他任务，这个ThreadLocal对象并没有实际作用，但由于在这个线程的ThreadLocalMap中仍然存在《线程ID，ThreadLocal对象的引用》，强引用，于是ThreadLocal对象无法被释放，造成内存泄漏）
 
 ### **10.[Session是什么？它与Cookie有什么区别？](https://segmentfault.com/a/1190000041429984)**
 
@@ -372,7 +372,7 @@ AOP就是通过一个BeanPostProcessor来实现的，这个BeanPostProcessor就�
 
 ![img](https://ask.qcloudimg.com/http-save/yehe-2219188/qucp8pstk7.png?imageView2/2/w/1200)
 
-**3、实现 Callable 接口，并结合 Future 实现**
+**3、实现 Callable 接口，并结合 FutureTask 实现**
 
 - 首先定义一个 Callable 的实现类，并实现 call 方法。call 方法是带返回值的。
 - 然后通过 FutureTask 的构造方法，把这个 Callable 实现类传进去。
@@ -738,7 +738,7 @@ public abstract class SpringFactoriesLoader {
 　　public static List<String> loadFactoryNames(Class<?> factoryClass, ClassLoader classLoader) {
 　　　　....
 　　}
-}1.2.3.4.5.6.7.8.9.
+}
 ```
 
 复制
@@ -1215,13 +1215,13 @@ GC 垃圾回收器其主要的目的是为了实现内存的回收，在这个�
 
 三色标记的过程中，标记线程和用户线程是并发执行的，那么就有可能在我们标记过程中，用户线程修改了引用关系，把原本应该回收的对象错误标记成了存活。(简单来说就是 `GC` 已经标黑的对象，在并发过程中用户线程引用链断掉，导致实际应该是垃圾的白色对象但却依旧是黑的，也就是**浮动垃圾**)。这时产生的垃圾怎么办呢？答案是本次不处理，留给下次垃圾回收处理。
 
-而**误标**问题，意思就是把本来应该存活的垃圾，标记为了死亡。这就会导致非常严重的错误。那么这类垃圾是怎么产生的呢?
+而**误标**问题，意思就是把本来应该存活的对象，标记为了死亡。这就会导致非常严重的错误。那么这类垃圾是怎么产生的呢?
 
 ![误标的发生过程.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d907d5b2bc2342619931531d42651378~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp?)
 
 途中对象 `A` 被标记为了黑色，此时它所引用的两个对象 `B`,`C` 都在被标记的灰色阶段。此时用户线程把`B->D`之间的的引用关系删除，并且在`A->D` 之间建立引用。此时`B`对象依然未扫描结束，而A对象又已经被扫描过了，不会继续接着往下扫描了。因此 `D`对象就会被当做垃圾回收掉。
 
-**什么是误标？当下面两个条件同时满足，会产生误标：**
+**什么是误标？当下面两个条件同时满足，会产生误标：**（在并发标记过程中，出现一下对象引用变动的行为）
 
 1. 赋值器插入了一条或者多条黑色对象到白色对象的引用
 2. 赋值器删除了全部从灰色对象到白色对象的直接引用或者间接引用
@@ -1236,7 +1236,7 @@ GC 垃圾回收器其主要的目的是为了实现内存的回收，在这个�
 
 **原始快照 (STAB)**
 
-原始快照要破坏的是第二个条件，当灰色对象要删除指向白色对象的引用关系时，就将这个要删除的引用记录下来，在并发扫描结束之后，再将这些记录过的引用关系中的灰色对象为根，重新扫描一次。这也可以简化理解为，无论引用关系删除与否，都会按照刚刚开始扫描那一刻的对象图快照来进行搜索。
+原始快照要破坏的是第二个条件，当灰色对象要删除指向白色对象的引用关系时，就将这个要删除的引用记录下来，在并发标记结束之后，再将这些记录过的引用关系中的灰色对象为根，重新扫描一次。这也可以简化理解为，无论引用关系删除与否，都会按照刚刚开始扫描那一刻的对象图快照来进行搜索。
 
 
 
@@ -1553,3 +1553,323 @@ private static void alloc() {
 **代码优化之栈上分配**
 
 我们通过 JVM 内存分配可以知道 JAVA 中的对象都是在堆上进行分配，当对象没有被引用的时候，需要依靠 GC 进行回收内存，如果对象数量较多的时候，会给 GC 带来较大压力，也间接影响了应用的性能。为了减少临时对象在堆内分配的数量，JVM 通过逃逸分析确定该对象不会被外部访问。那就通过标量替换将该对象分解在栈上分配内存，这样该对象所占用的内存空间就可以随栈帧出栈而销毁，就减轻了垃圾回收的压力。
+
+
+
+
+
+### 44.TCP延迟确认机制
+
+当发送没有携带数据的 ACK，它的网络效率也是很低的，因为它也有 40 个字节的 IP 头 和 TCP 头，但却没有携带数据报文。 为了解决 ACK 传输效率低问题，所以就衍生出了 **TCP 延迟确认**。 TCP 延迟确认的策略：
+
+- 当有响应数据要发送时，ACK 会随着响应数据一起立刻发送给对方
+- 当没有响应数据要发送时，ACK 将会延迟一段时间，以等待是否有响应数据可以一起发送
+- 如果在延迟等待发送 ACK 期间，对方的第二个数据报文又到达了，这时就会立刻发送 ACK
+
+![img](https://cdn.xiaolincoding.com//mysql/other/33f3d2d54a924b0a80f565038327e0e4.png)
+
+TCP四次挥手（client-FIN->server-ACK->server-FIN->client-ack）,中间两个可能合并成一次传输（ACK+FIN），变成三次挥手。
+
+当被动关闭方（上图的服务端）在 TCP 挥手过程中，「**没有数据要发送」并且「开启了 TCP 延迟确认机制」，那么第二和第三次挥手就会合并传输，这样就出现了三次挥手。**
+
+当被动关闭方在 TCP 挥手过程中，如果「没有数据要发送」，同时「没有开启 TCP_QUICKACK（默认情况就是没有开启，没有开启 TCP_QUICKACK，等于就是在使用 TCP 延迟确认机制）」，那么第二和第三次挥手就会合并传输，这样就出现了三次挥手。
+
+**所以，出现三次挥手现象，是因为 TCP 延迟确认机制导致的。**
+
+
+
+
+
+### 45.@Transactional注解
+
+@[Transactional](https://so.csdn.net/so/search?q=Transactional&spm=1001.2101.3001.7020) 是声明式事务管理 编程中使用的注解
+
+**1 .添加位置**
+
+1）接口实现类或接口实现方法上，而不是接口类中。
+2）访问权限：public 的方法才起作用。@Transactional 注解应该只被应用到 public 方法上，这是由 Spring [AOP](https://so.csdn.net/so/search?q=AOP&spm=1001.2101.3001.7020) 的本质决定的。
+系统设计：将标签放置在需要进行事务管理的方法上，而不是放在所有接口实现类上：**只读的接口就不需要事务管理**，由于配置了@Transactional就需要AOP拦截及事务的处理，可能影响系统性能。
+
+3）错误使用：
+
+```less
+1.接口中A、B两个方法，A无@Transactional标签，B有，上层通过A间接调用B，此时事务不生效。
+2.接口中异常（运行时异常）被捕获而没有被抛出。
+  默认配置下，spring 只有在抛出的异常为运行时 unchecked 异常时才回滚该事务，
+  也就是抛出的异常为RuntimeException 的子类(Errors也会导致事务回滚)，
+  而抛出 checked 异常则不会导致事务回滚 。可通过 @Transactional rollbackFor进行配置。
+3.多线程下事务管理因为线程不属于 spring 托管，故线程不能够默认使用 spring 的事务,
+  也不能获取spring 注入的 bean 。
+  在被 spring 声明式事务管理的方法内开启多线程，多线程内的方法不被事务控制。
+  一个使用了@Transactional 的方法，如果方法内包含多线程的使用，方法内部出现异常，
+  不会回滚线程中调用方法的事务。
+```
+
+**@Transactional注解**
+@Transactional 实质是使用了 JDBC 的事务来进行事务控制的
+@Transactional 基于 Spring 的动态代理的机制
+
+@Transactional 实现原理：
+
+1) 事务开始时，通过AOP机制，生成一个代理connection对象，
+   并将其放入 DataSource 实例的某个与 DataSourceTransactionManager 相关的某处容器中。
+   在接下来的整个事务中，客户代码都应该使用该 connection 连接数据库，
+   执行所有数据库命令。
+   [不使用该 connection 连接数据库执行的数据库命令，在本事务回滚的时候得不到回滚]
+    （物理连接 connection 逻辑上新建一个会话session；
+   DataSource 与 TransactionManager 配置相同的数据源）
+
+2) 事务结束时，回滚在第1步骤中得到的代理 connection 对象上执行的数据库命令，
+   然后关闭该代理 connection 对象。
+    （事务结束后，回滚操作不会对已执行完毕的SQL操作命令起作用）
+
+**声明式事务的管理实现本质：**
+事务的两种开启方式：
+   显示开启 start transaction | begin，通过 commit | rollback 结束事务
+   关闭数据库中自动提交 autocommit set autocommit = 0；MySQL 默认开启自动提交；通过手动提交或执行回滚操作来结束事务
+
+
+Spring 关闭数据库中自动提交：在方法执行前关闭自动提交，方法执行完毕后再开启自动提交
+
+
+
+### 46.事务传播机制
+
+**事务传播行为**：如果在开始当前事务之前，一个事务上下文已经存在，此时有若干选项可以指定一个事务性方法的执行行为
+
+什么叫事务传播行为？既然是传播，那么至少有两个东西，才可以发生传播。单体不存在传播这个行为。
+
+事务传播行为（Propagation behavior）指的是当一个事务方法被另一个事务方法调用时，这个事务方法应该如何进行。
+
+例如：method A事务方法调用method B事务方法时，method B是继续在调用者method A的事务中运行呢，还是为自己开启一个新事务运行，这就是由method B 的事务传播行为决定的。
+
+```SQL
+1. TransactionDefinition.PROPAGATION_REQUIRED：
+   如果当前存在事务，则加入该事务；如果当前没有事务，则创建一个新的事务。这是默认值。
+ 
+2. TransactionDefinition.PROPAGATION_REQUIRES_NEW：
+   创建一个新的事务，如果当前存在事务，则把当前事务挂起。
+ 
+3. TransactionDefinition.PROPAGATION_SUPPORTS：
+   如果当前存在事务，则加入该事务；如果当前没有事务，则以非事务的方式继续运行。
+ 
+4. TransactionDefinition.PROPAGATION_NOT_SUPPORTED：
+   以非事务方式运行，如果当前存在事务，则把当前事务挂起。
+ 
+5. TransactionDefinition.PROPAGATION_NEVER：
+   以非事务方式运行，如果当前存在事务，则抛出异常。
+ 
+6. TransactionDefinition.PROPAGATION_MANDATORY：
+   如果当前存在事务，则加入该事务；如果当前没有事务，则抛出异常。
+ 
+7. TransactionDefinition.PROPAGATION_NESTED：
+   如果当前存在事务，则创建一个事务作为当前事务的嵌套事务来运行；
+   如果当前没有事务，则该取值等价于TransactionDefinition.PROPAGATION_REQUIRED。
+```
+
+![img](https://img-blog.csdnimg.cn/20181123164237116.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTEzMTQ0NDI=,size_16,color_FFFFFF,t_70)
+
+
+
+### 47.倒排索引
+
+**倒排索引(Inverted Index)**：倒排索引是实现“单词-文档矩阵”的一种具体存储形式，通过倒排索引，可以根据单词快速获取包含这个单词的文档列表。倒排索引主要由两个部分组成：“单词词典”和“倒排文件”。
+
+倒排索引简单实例
+
+中文和英文等语言不同，单词之间没有明确分隔符号，所以首先要用分词系统将文档自动切分成单词序列。这样每个文档就转换为由单词序列构成的数据流，为了系统后续处理方便，需要对每个不同的单词赋予唯一的单词编号，同时记录下哪些文档包含这个单词，在如此处理结束后，我们可以得到最简单的倒排索引（参考图3-4）。在图4中，“单词ID”一栏记录了每个单词的单词编号，第二栏是对应的单词，第三栏即每个单词对应的倒排列表。比如单词“谷歌”，其单词编号为1，倒排列表为{1,2,3,4,5}，说明文档集合中每个文档都包含了这个单词。
+
+![img](https://images2015.cnblogs.com/blog/855959/201702/855959-20170224200334195-2052728227.png)
+
+
+
+之所以说图4所示倒排索引是最简单的，是因为这个索引系统只记载了哪些文档包含某个单词，而事实上，索引系统还可以记录除此之外的更多信息。图5是一个相对复杂些的倒排索引，与图4的基本索引系统比，在单词对应的倒排列表中不仅记录了文档编号，还记载了单词频率信息（TF），即这个单词在某个文档中的出现次数，之所以要记录这个信息，是因为词频信息在搜索结果排序时，计算查询和文档相似度是很重要的一个计算因子，所以将其记录在倒排列表中，以方便后续排序时进行分值计算。在图5的例子里，单词“创始人”的单词编号为7，对应的倒排列表内容为：（3:1），其中的3代表文档编号为3的文档包含这个单词，数字1代表词频信息，即这个单词在3号文档中只出现过1次，其它单词对应的倒排列表所代表含义与此相同。
+
+![855959-20170224200448148-924219280](https://images2015.cnblogs.com/blog/855959/201702/855959-20170224200448148-924219280.png)
+
+实用的倒排索引还可以记载更多的信息，图6所示索引系统除了记录文档编号和单词频率信息外，额外记载了两类信息，即每个单词对应的“文档频率信息”（对应图6的第三栏）以及在倒排列表中记录单词在某个文档出现的位置信息。
+
+图6所示倒排索引已经是一个非常完备的索引系统，实际搜索系统的索引结构基本如此，区别无非是采取哪些具体的数据结构来实现上述逻辑结构。
+
+有了这个索引系统，搜索引擎可以很方便地响应用户的查询，比如用户输入查询词“Facebook”，搜索系统查找倒排索引，从中可以读出包含这个单词的文档，这些文档就是提供给用户的搜索结果，而利用单词频率信息、文档频率信息即可以对这些候选搜索结果进行排序，计算文档和查询的相似性，按照相似性得分由高到低排序输出，此即为搜索系统的部分内部流程，具体实现方案本书第五章会做详细描述。
+
+
+
+### 48.Redis的内存淘汰策略
+
+（**主要是分为是否淘汰，淘汰设置了过期时间的，以及淘汰全部）**
+
+Redis 内存淘汰策略共有八种，这八种策略大体分为「不进行数据淘汰」和「进行数据淘汰」两类策略。
+
+*1、**不进行数据淘汰的策略***
+
+**noeviction**（Redis3.0之后，默认的内存淘汰策略） ：它表示当运行内存超过最大设置内存时，不淘汰任何数据，这时如果有新的数据写入，则会触发 OOM，但是如果没用数据写入的话，只是单纯的查询或者删除操作的话，还是可以正常工作。
+
+*2、进行数据淘汰的策略*
+
+针对「进行数据淘汰」这一类策略，又可以细分为「在设置了过期时间的数据中进行淘汰」和「在所有数据范围内进行淘汰」这两类策略。
+
+在设置了过期时间的数据中进行淘汰：
+
+- **volatile-random**：随机淘汰设置了过期时间的任意键值；
+- **volatile-ttl**：优先淘汰更早过期的键值。
+- **volatile-lru**（Redis3.0 之前，默认的内存淘汰策略）：淘汰所有设置了过期时间的键值中，最久未使用的键值；
+- **volatile-lfu**（Redis 4.0 后新增的内存淘汰策略）：淘汰所有设置了过期时间的键值中，最少使用的键值；
+
+在所有数据范围内进行淘汰：
+
+- **allkeys-random**：随机淘汰任意键值;
+- **allkeys-lru**：淘汰整个键值中最久未使用的键值；
+- **allkeys-lfu**（Redis 4.0 后新增的内存淘汰策略）：淘汰整个键值中最少使用的键值。
+
+> Redis 是如何实现 LRU 算法的？
+
+Redis 实现的是一种**近似 LRU 算法**，目的是为了更好的节约内存，它的**实现方式是在 Redis 的对象结构体中添加一个额外的字段，用于记录此数据的最后一次访问时间**。
+
+当 Redis 进行内存淘汰时，会使用**随机采样的方式来淘汰数据**，它是随机取 5 个值（此值可配置），然后**淘汰最久没有使用的那个**。
+
+> Redis 是如何实现 LFU 算法的？
+
+LFU 算法相比于 LRU 算法的实现，多记录了「数据的访问频次」的信息。
+
+注意，logc 并不是单纯的访问次数，而是访问频次（访问频率），因为 **logc 会随时间推移而衰减的**。
+
+在每次 key 被访问时，会先对 logc 做一个衰减操作，衰减的值跟前后访问时间的差距有关系，如果上一次访问的时间与这一次访问的时间差距很大，那么衰减的值就越大，这样实现的 LFU 算法是根据**访问频率**来淘汰数据的，而不只是访问次数。访问频率需要考虑 key 的访问是多长时间段内发生的。key 的先前访问距离当前时间越长，那么这个 key 的访问频率相应地也就会降低，这样被淘汰的概率也会更大。
+
+
+
+### 49.JDK动态代理
+
+- 什么是代理 (模式)？
+
+   代理模式 (Proxy Pattern) 也称委托模式 (Deletage Pattern)，属于结构型设计模式，也是一项基本的设计技巧。通常，代理模式用于处理两种问题：
+
+  - **1、控制对基础对象的访问**
+  - **2、在访问基础对象时增加额外功能**
+
+- **代理的基本分类：** 静态代理 + 动态代理，分类的标准是 **“代理关系是否在编译期确定；**
+- **动态代理的实现方式：** JDK、CGLIB、Javassist、ASM
+
+静态代理是指代理关系在编译期确定的代理模式。使用静态代理时，通常的做法是为每个业务类抽象一个接口，对应地创建一个代理类。
+
+。举个例子，需要给网络请求增加日志打印：
+
+```typescript
+typescript
+复制代码1、定义基础接口
+public interface HttpApi {
+    String get(String url);
+}
+
+2、网络请求的真正实现
+public class RealModule implements HttpApi {
+     @Override
+     public String get(String url) {
+         return "result";
+     }
+}
+
+3、代理类
+public class Proxy implements HttpApi {
+    private HttpApi target;
+
+    Proxy(HttpApi target) {
+        this.target = target;
+    }
+
+    @Override
+    public String get(String url) {
+        // 扩展的功能
+        Log.i("http-statistic", url);
+        // 访问基础对象
+        return target.get(url);
+    }
+}
+```
+
+2.2 静态代理的缺点
+
+- **1、重复性：** 需要代理的业务或方法越多，重复的模板代码越多；
+- **2、脆弱性：** 一旦改动基础接口，代理类也需要同步修改（因为代理类也实现了基础接口）。
+
+
+
+**动态代理**：
+
+动态代理是指代理关系在运行时确定的代理模式。需要注意，JDK 动态代理并不等价于动态代理，前者只是动态代理的实现之一，其它实现方案还有：CGLIB 动态代理、Javassist 动态代理和 ASM 动态代理等。因为代理类在编译前不存在，代理关系到运行时才能确定，因此称为动态代理。
+
+JDK 动态代理示例
+
+我们今天主要讨论JDK 动态代理（Dymanic Proxy API），它是 JDK1.3 中引入的特性，核心 API 是 Proxy 类和 InvocationHandler 接口。它的原理是利用反射机制在运行时生成代理类的字节码。
+
+我们继续用打印日志的例子，使用动态代理时：
+
+```typescript
+public class ProxyFactory {
+    public static HttpApi getProxy(HttpApi target) {
+        return (HttpApi) Proxy.newProxyInstance(
+                target.getClass().getClassLoader(),
+                target.getClass().getInterfaces(),
+                new LogHandler(target));
+    }
+
+    private static class LogHandler implements InvocationHandler {
+        private HttpApi target;
+
+        LogHandler(HttpApi target) {
+            this.target = target;
+        }
+        // method底层的方法无参数时，args为空或者长度为0
+        @Override
+        public Object invoke(Object proxy, Method method, @Nullable Object[] args)       
+               throws Throwable {
+            // 扩展的功能
+            Log.i("http-statistic", (String) args[0]);
+            // 访问基础对象
+            return method.invoke(target, args);
+        }
+    }
+}
+```
+
+如果需要兼容多个业务接口，可以使用泛型：
+
+```typescript
+public class ProxyFactory {
+    @SuppressWarnings("unchecked")
+    public static <T> T getProxy(T target) {
+        return (T) Proxy.newProxyInstance(
+        target.getClass().getClassLoader(),
+        target.getClass().getInterfaces(),
+        new LogHandler(target));
+    }
+
+    private static class LogHandler<T> implements InvocationHandler {
+        // 同上
+    }
+}
+```
+
+客户端调用：
+
+```ini
+HttpAPi proxy = ProxyFactory.getProxy<HttpApi>(target);
+OtherHttpApi proxy = ProxyFactory.getProxy<OtherHttpApi>(otherTarget);
+```
+
+通过泛型参数传递不同的类型，客户端可以按需实例化不同类型的代理对象。基础接口的所有方法都统一到 InvocationHandler#invoke() 处理。静态代理的两个缺点都得到解决：
+
+- 1、重复性：即使有多个基础业务需要代理，也不需要编写过多重复的模板代码；
+- 2、脆弱性：当基础接口变更时，同步改动代理并不是必须的。
+
+**静态代理 & 动态代理对比**
+
+- 共同点：两种代理模式实现都在不改动基础对象的前提下，对基础对象进行访问控制和扩展，符合开闭原则。
+- 不同点：静态代理存在重复性和脆弱性的缺点；而动态代理（搭配泛型参数）可以实现了一个代理同时处理 N 种基础接口，一定程度上规避了静态代理的缺点。从原理上讲，静态代理的代理类 Class 文件在编译期生成，而动态代理的代理类 Class 文件在运行时生成，代理类在 coding 阶段并不存在，代理关系直到运行时才确定。
+
+
+
+### 50.Fast-fail机制
+
+ArrayList也采用了快速失败的机制，通过记录modCount参数来实现。在面对并发的修改时，迭代器很快就会完全失败，而不是冒着在将来某个不确定时间发生任意不确定行为的风险。
+
