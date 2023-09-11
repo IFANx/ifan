@@ -185,6 +185,7 @@ module.exports = {
                 children: [
                        {   title: "summary2", path: "/Notes/Summary/summary2" },
                        {   title: "summary1", path: "/Notes/Summary/summary1" },
+                       {   title: "高频点", path: "/Notes/Summary/高频点" },
                        {   title: "设计模式", path: "/Notes/Summary/设计模式" },
                 ]
             },               {
